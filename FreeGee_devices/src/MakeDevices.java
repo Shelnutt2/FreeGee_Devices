@@ -787,6 +787,45 @@ public class MakeDevices {
 		f240kactions.add(restore_efs_apq8064);
 		f240k.setActions(f240kactions);
 		
+		//LG-F220
+		ArrayList<Action> f220kactions = new ArrayList<Action>();
+		Device f220k = new Device();
+		f220k.setName("LG Optimus GK");
+		carrier = new ArrayList<String>();
+		carrier.add("any");
+		f220k.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("any");
+		f220k.setFirmware(firmware);
+		f220k.setModel("LG-F220K");
+		f220k.setProp_id("ro.product.Model");
+		f220k.setSW_Prop_id("ro.lge.swversion");
+		f220kactions.add(disable_lge_security_loki);
+		
+		Action cwm_6045_f220 = new Action();
+		cwm_6045_f220.setName("CWM-6.0.4.5");
+		cwm_6045_f220.setDescription("This will install "+cwm_6045_f220.getName());
+		cwm_6045_f220.setMd5sum("1af780c9334dc5e254048e20a5cb2719");
+		cwm_6045_f220.setVersion("1");
+		cwm_6045_f220.setZipFile("cwm-6.0.4.5-f220.zip");
+		cwm_6045_f220.setZipFileLocation("LG-F220/cwm-6.0.4.5-f220.zip");
+/*		ArrayList<Action> rdepse_cwm_6045_e980 = new ArrayList<Action>();
+		cwm_6045_e980.setDependencies(rdepse_cwm_6045_e980);*/
+		f220kactions.add(cwm_6045_f220);
+		
+		Action twrp_2630_f220 = new Action();
+		twrp_2630_f220.setName("TWRP-2.6.3.3");
+		twrp_2630_f220.setDescription("This will install "+twrp_2630_f220.getName());
+		twrp_2630_f220.setMd5sum("12060c8ea7b7377b3c36047cc98f6325");
+		twrp_2630_f220.setVersion("1");
+		twrp_2630_f220.setZipFile("twrp-2.6.3.0-f220.zip");
+		twrp_2630_f220.setZipFileLocation("LG-F220/twrp-2.6.3.0-f220.zip");
+		
+		f220kactions.add(twrp_2630_f220);
+		f220kactions.add(backup_efs_apq8064);
+		f220kactions.add(restore_efs_apq8064);
+		f220k.setActions(f220kactions);
+		
 		//LG-D800
 		ArrayList<Action> d800actions = new ArrayList<Action>();
 		Device d800 = new Device();
@@ -817,7 +856,7 @@ public class MakeDevices {
 		Action twrp_2630_d800 = new Action();
 		twrp_2630_d800.setName("TWRP-2.6.3.3");
 		twrp_2630_d800.setDescription("This will install "+twrp_2630_d800.getName());
-		twrp_2630_d800.setMd5sum("4ffa87ae83e4a37317292aacefcff143");
+		twrp_2630_d800.setMd5sum("629a19a4b0aa61ffb39f0eea1ff28a73");
 		twrp_2630_d800.setVersion("1");
 		twrp_2630_d800.setZipFile("twrp-2.6.3.0-d800.zip");
 		twrp_2630_d800.setZipFileLocation("LG-D800/twrp-2.6.3.0-d800.zip");		
@@ -858,7 +897,7 @@ public class MakeDevices {
 		Action twrp_2630_d801 = new Action();
 		twrp_2630_d801.setName("TWRP-2.6.3.3");
 		twrp_2630_d801.setDescription("This will install "+twrp_2630_d801.getName());
-		twrp_2630_d801.setMd5sum("f3f9bf6601e6b748b2bbaa249a771de3");
+		twrp_2630_d801.setMd5sum("e68e615ff81848fdd5783bb3698909ad");
 		twrp_2630_d801.setVersion("1");
 		twrp_2630_d801.setZipFile("twrp-2.6.3.0-d801.zip");
 		twrp_2630_d801.setZipFileLocation("LG-D801/twrp-2.6.3.0-d801.zip");		
@@ -897,7 +936,7 @@ public class MakeDevices {
 		Action twrp_2630_d802 = new Action();
 		twrp_2630_d802.setName("TWRP-2.6.3.3");
 		twrp_2630_d802.setDescription("This will install "+twrp_2630_d802.getName());
-		twrp_2630_d802.setMd5sum("5f93cc41c44dbd54b7b543dccfad9faf");
+		twrp_2630_d802.setMd5sum("0a4f4eed6290f5d0101498281f5c8f94");
 		twrp_2630_d802.setVersion("1");
 		twrp_2630_d802.setZipFile("twrp-2.6.3.0-d802.zip");
 		twrp_2630_d802.setZipFileLocation("LG-D802/twrp-2.6.3.0-d802.zip");
@@ -936,7 +975,7 @@ public class MakeDevices {
 		Action twrp_2630_d803 = new Action();
 		twrp_2630_d803.setName("TWRP-2.6.3.3");
 		twrp_2630_d803.setDescription("This will install "+twrp_2630_d803.getName());
-		twrp_2630_d803.setMd5sum("1d59cec07e485104c9aa99e055d3bd5d");
+		twrp_2630_d803.setMd5sum("65ac71b095c38f7ad298d5fa8e056144");
 		twrp_2630_d803.setVersion("1");
 		twrp_2630_d803.setZipFile("twrp-2.6.3.0-d803.zip");
 		twrp_2630_d803.setZipFileLocation("LG-D803/twrp-2.6.3.0-d803.zip");		
@@ -989,7 +1028,7 @@ public class MakeDevices {
 		Action twrp_2630_ls980 = new Action();
 		twrp_2630_ls980.setName("TWRP-2.6.3.3");
 		twrp_2630_ls980.setDescription("This will install "+twrp_2630_ls980.getName());
-		twrp_2630_ls980.setMd5sum("5238be0f872309a7c7324284a4700d89");
+		twrp_2630_ls980.setMd5sum("48537116e0c40336d17de113dba44f99");
 		twrp_2630_ls980.setVersion("1");
 		twrp_2630_ls980.setZipFile("twrp-2.6.3.0-ls980.zip");
 		twrp_2630_ls980.setZipFileLocation("LG-LS980/twrp-2.6.3.0-ls980.zip");
@@ -1031,7 +1070,7 @@ public class MakeDevices {
 		Action twrp_2630_vs980 = new Action();
 		twrp_2630_vs980.setName("TWRP-2.6.3.3");
 		twrp_2630_vs980.setDescription("This will install "+twrp_2630_vs980.getName());
-		twrp_2630_vs980.setMd5sum("9866001606dd5135e64b37d7546822e7");
+		twrp_2630_vs980.setMd5sum("c4658f06e5939532807fd2f0be483129");
 		twrp_2630_vs980.setVersion("1");
 		twrp_2630_vs980.setZipFile("twrp-2.6.3.0-vs980.zip");
 		twrp_2630_vs980.setZipFileLocation("LG-VS980/twrp-2.6.3.0-vs980.zip");
@@ -1112,6 +1151,7 @@ public class MakeDevices {
 		devices.add(f240s);
 		devices.add(f240l);
 		devices.add(f240k);
+		devices.add(f220k);
 		devices.add(d800);
 		devices.add(d801);
 		devices.add(d802);
