@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-
+@Root
 public class DeviceDetails {
 	@ElementList(required=false)
     private ArrayList<Partition> partitions;
@@ -10,6 +11,9 @@ public class DeviceDetails {
 	public DeviceDetails(ArrayList<Partition> partitions){
 		this.partitions = partitions;
 	}
+
+    public DeviceDetails(){}
+
 	public ArrayList<Partition> getPartitions(){
 		return partitions;
 	}

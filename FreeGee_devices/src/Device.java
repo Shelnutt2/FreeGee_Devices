@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Element;
@@ -23,13 +21,13 @@ public class Device {
 	@Element
     private String sw_prop_id;
 	@Element // 0 = mako aboot, 1 = loki
-    private int bootloaderExplot;
+    private int bootloaderExploit;
     @ElementList
     private ArrayList< Action > actions;
     @Element(required=false)
     private String deviceDetailsLocation;
 
-    public Device(String name, ArrayList<String> carrier, String model, ArrayList<String> firmware, String prop_id, String sw_prop_id, int bootloaderExplot, ArrayList< Action > actions, String deviceDetailsLocation){
+    public Device(String name, ArrayList<String> carrier, String model, ArrayList<String> firmware, String prop_id, String sw_prop_id, int bootloaderExploit, ArrayList< Action > actions, String deviceDetailsLocation){
     	this.name = name;
     	this.carrier = carrier;
     	//this.partitions = partitions;
@@ -37,7 +35,7 @@ public class Device {
     	this.firmware = firmware;
     	this.prop_id = prop_id;
     	this.sw_prop_id = sw_prop_id;
-    	this.bootloaderExplot = bootloaderExplot;
+    	this.bootloaderExploit = bootloaderExploit;
     	this.actions = actions;
     	this.deviceDetailsLocation = deviceDetailsLocation;
     }
@@ -72,8 +70,8 @@ public class Device {
     	return sw_prop_id;
     }
 
-    public int getBootloaderExplot(){
-    	return bootloaderExplot;
+    public int getBootloaderExploit(){
+    	return bootloaderExploit;
     }
 
     public ArrayList< Action > getActions() {
@@ -112,8 +110,8 @@ public class Device {
     	this.sw_prop_id = sw_prop_id;
     }
 
-    public void setBootloaderExplot(int bootloaderExplot){
-    	this.bootloaderExplot = bootloaderExplot;
+    public void setBootloaderExploit(int bootloaderExploit){
+    	this.bootloaderExploit = bootloaderExploit;
     }
 
     public void setActions( ArrayList< Action > actions ) {
@@ -122,5 +120,9 @@ public class Device {
     
     public void setDeviceDetailsLocation(String deviceDetailsLocation){
     	this.deviceDetailsLocation = deviceDetailsLocation;
+    }
+
+    public String toString(){
+		return "Name: "+name+" "+"Model: "+model+" "+"Carrier: " +carrier;
     }
 }

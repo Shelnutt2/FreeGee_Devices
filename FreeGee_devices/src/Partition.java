@@ -1,6 +1,7 @@
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-
+@Root
 public class Partition {
 	@Element
     private String name;
@@ -14,6 +15,8 @@ public class Partition {
 		this.partitionNumber = partitionNumber;
 		this.requiredBackup = requiredBackup;
 	}
+
+    public Partition(){}
 	
 	public String getName(){
 		return name;

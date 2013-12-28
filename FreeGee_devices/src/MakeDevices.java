@@ -88,6 +88,7 @@ public class MakeDevices {
 		backup_efs_apq8064.setVersion("1");
 		backup_efs_apq8064.setZipFile("backup_efs_apq8064.zip");
 		backup_efs_apq8064.setZipFileLocation("backup_efs_apq8064.zip");
+		backup_efs_apq8064.setPriority(10);
 		
 		Action backup_efs_msm8974 = new Action();
 		backup_efs_msm8974.setName("Backup EFS");
@@ -143,16 +144,6 @@ public class MakeDevices {
 		ogunlock.setZipFile("og_unlock.zip");
 		ogunlock.setZipFileLocation("og_unlock.zip");
 		
-		
-		Action test = new Action();
-		test.setName("test");
-		test.setDescription("Test");
-		test.setMd5sum("0f1dd04f082d31733576da01c772e1b2");
-		test.setVersion("1");
-		test.setZipFile("test2.zip");
-		test.setZipFileLocation("test2.zip");
-		
-		
 		//LG-LS970
 		ArrayList<Action> ls970actions = new ArrayList<Action>();
 		Device ls970 = new Device();
@@ -185,6 +176,7 @@ public class MakeDevices {
 		cwm_6045_ls970.setVersion("1");
 		cwm_6045_ls970.setZipFile("cwm-6.0.4.5-ls970.zip");
 		cwm_6045_ls970.setZipFileLocation("LG-LS970/cwm-6.0.4.5-ls970.zip");
+		cwm_6045_ls970.setPriority(5);
 		ArrayList<Action> rdepse_cwm_6045_ls970 = new ArrayList<Action>();
 		rdepse_cwm_6045_ls970.add(ogMakounlock);
 		cwm_6045_ls970.setDependencies(rdepse_cwm_6045_ls970);
@@ -222,6 +214,8 @@ public class MakeDevices {
 
 		File ls970DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-LS970/ls970.xml");
 		serializer.write(ls970Details, ls970DetailsFile);
+		
+		DeviceDetails newls970Details = serializer.read(DeviceDetails.class, ls970DetailsFile);
 		
 		//LG-E970
 		ArrayList<Action> e970actions = new ArrayList<Action>();
@@ -1287,7 +1281,7 @@ public class MakeDevices {
 		devices.add(vs980_12b);
 		ddevices.setDevices(devices);
 
-		File devices2 = new File("/mnt/Android/optimusg/freegee/2.0/devices2.xml");
+		File devices2 = new File("/mnt/Android/optimusg/freegee/2.0/devices/devices2.xml");
 		serializer.write(ddevices, devices2);
 		
 		Devices newDevices = serializer.read(Devices.class, devices2);
