@@ -15,8 +15,9 @@ public class MakeDevices {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Devices ddevices = new Devices();
+		Serializer serializer = new Persister();
 		
-		ArrayList<String> partitions;
+		ArrayList<Partition> partitions;
 		ArrayList<String> firmware = new ArrayList<String>();
 		ArrayList<String> carrier = new ArrayList<String>();
 		ArrayList<Device> devices = new ArrayList<Device>();
@@ -171,6 +172,7 @@ public class MakeDevices {
 		ls970.setModel("LG-LS970");
 		ls970.setProp_id("ro.product.Model");
 		ls970.setSW_Prop_id("ro.lge.swversion");
+		ls970.setDeviceDetailsLocation("LG-LS970/ls970.xml");
 		ls970actions.add(ogunlock);
 		ls970actions.add(ogMakounlock);
 		ls970actions.add(disable_lge_security_og);
@@ -205,6 +207,22 @@ public class MakeDevices {
 		ls970actions.add(restore_backups_og);
 		ls970.setActions(ls970actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p28",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails ls970Details = new DeviceDetails(partitions);
+
+		File ls970DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-LS970/ls970.xml");
+		serializer.write(ls970Details, ls970DetailsFile);
+		
 		//LG-E970
 		ArrayList<Action> e970actions = new ArrayList<Action>();
 		Device e970 = new Device();
@@ -218,6 +236,7 @@ public class MakeDevices {
 		e970.setModel("LG-E970");
 		e970.setProp_id("ro.product.Model");
 		e970.setSW_Prop_id("ro.lge.swversion");
+		e970.setDeviceDetailsLocation("LG-E970/e970.xml");
 		e970actions.add(ogunlock);
 		e970actions.add(ogMakounlock);
 		e970actions.add(disable_lge_security_og);
@@ -253,6 +272,22 @@ public class MakeDevices {
 		e970actions.add(restore_backups_og);
 		e970.setActions(e970actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails e970Details = new DeviceDetails(partitions);
+
+		File e970DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-E970/e970.xml");
+		serializer.write(e970Details, e970DetailsFile);
+		
 		//LG-E971
 		ArrayList<Action> e971actions = new ArrayList<Action>();
 		Device e971 = new Device();
@@ -268,6 +303,7 @@ public class MakeDevices {
 		e971.setModel("LG-E971");
 		e971.setProp_id("ro.product.Model");
 		e971.setSW_Prop_id("ro.lge.swversion");
+		e971.setDeviceDetailsLocation("LG-E973/e973.xml");
 		e971actions.add(ogunlock);
 		e971actions.add(ogMakounlock);
 		e971actions.add(disable_lge_security_og);
@@ -302,6 +338,22 @@ public class MakeDevices {
 		e971actions.add(restore_backups_og);
 		e971.setActions(e971actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails e973Details = new DeviceDetails(partitions);
+
+		File e973DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-E973/e973.xml");
+		serializer.write(e973Details, e973DetailsFile);
+		
 		//LG-E973
 		ArrayList<Action> e973actions = new ArrayList<Action>();
 		Device e973 = new Device();
@@ -317,6 +369,7 @@ public class MakeDevices {
 		e973.setModel("LG-E973");
 		e973.setProp_id("ro.product.Model");
 		e973.setSW_Prop_id("ro.lge.swversion");
+		e973.setDeviceDetailsLocation("LG-E973/e973.xml");
 		e973actions.add(ogunlock);
 		e973actions.add(ogMakounlock);
 		e973actions.add(disable_lge_security_og);
@@ -353,6 +406,7 @@ public class MakeDevices {
 		e975.setModel("LG-E975");
 		e975.setProp_id("ro.product.Model");
 		e975.setSW_Prop_id("ro.lge.swversion");
+		e975.setDeviceDetailsLocation("LG-E975/e975.xml");
 		e975actions.add(ogunlock);
 		e975actions.add(ogMakounlock);
 		e975actions.add(disable_lge_security_og);
@@ -387,6 +441,22 @@ public class MakeDevices {
 		e975actions.add(restore_backups_og);
 		e975.setActions(e975actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails e975Details = new DeviceDetails(partitions);
+
+		File e975DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-E975/e975.xml");
+		serializer.write(e975Details, e975DetailsFile);
+		
 		//LG-E975k
 		Device e975k = new Device();
 		e975k.setName("LG Optimus G");
@@ -399,6 +469,7 @@ public class MakeDevices {
 		e975k.setModel("LG-E975K");
 		e975k.setProp_id("ro.product.Model");
 		e975k.setSW_Prop_id("ro.lge.swversion");
+		e975k.setDeviceDetailsLocation("LG-E975/e975.xml");
 		e975k.setActions(e975actions);
 
 		//LG-E976
@@ -414,6 +485,7 @@ public class MakeDevices {
 		e976.setModel("LG-E976");
 		e976.setProp_id("ro.product.Model");
 		e976.setSW_Prop_id("ro.lge.swversion");
+		e976.setDeviceDetailsLocation("LG-E975/e975.xml");
 		e976actions.add(ogunlock);
 		e976actions.add(ogMakounlock);
 		e976actions.add(disable_lge_security_og);
@@ -438,6 +510,7 @@ public class MakeDevices {
 		e977.setModel("LG-E977");
 		e977.setProp_id("ro.product.Model");
 		e977.setSW_Prop_id("ro.lge.swversion");
+		e977.setDeviceDetailsLocation("LG-E975/e975.xml");
 		e977actions.add(ogunlock);
 		e977actions.add(ogMakounlock);
 		e977actions.add(disable_lge_security_og);
@@ -462,6 +535,7 @@ public class MakeDevices {
 		e987.setModel("LG-E987");
 		e987.setProp_id("ro.product.Model");
 		e987.setSW_Prop_id("ro.lge.swversion");
+		e987.setDeviceDetailsLocation("LG-E975/e975.xml");
 		e987actions.add(ogunlock);
 		e987actions.add(ogMakounlock);
 		e987actions.add(disable_lge_security_og);
@@ -486,6 +560,7 @@ public class MakeDevices {
 		k180.setModel("LG-F180K");
 		k180.setProp_id("ro.product.Model");
 		k180.setSW_Prop_id("ro.lge.swversion");
+		k180.setDeviceDetailsLocation("LG-180K/180k.xml");
 		k180actions.add(ogunlock);
 		k180actions.add(ogMakounlock);
 		k180actions.add(disable_lge_security_og);
@@ -520,6 +595,22 @@ public class MakeDevices {
 		k180actions.add(restore_backups_og);
 		k180.setActions(k180actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails k180Details = new DeviceDetails(partitions);
+
+		File k180DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-180K/180k.xml");
+		serializer.write(k180Details, k180DetailsFile);
+		
 		//LG-180L
 		ArrayList<Action> l180actions = new ArrayList<Action>();
 		Device l180 = new Device();
@@ -533,6 +624,7 @@ public class MakeDevices {
 		l180.setModel("LG-F180L");
 		l180.setProp_id("ro.product.model");
 		l180.setSW_Prop_id("ro.lge.swversion");
+		l180.setDeviceDetailsLocation("LG-180l/180l.xml");
 		l180actions.add(ogunlock);
 		l180actions.add(ogMakounlock);
 		l180actions.add(disable_lge_security_og);
@@ -567,6 +659,22 @@ public class MakeDevices {
 		l180actions.add(restore_backups_og);
 		l180.setActions(l180actions);
 		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails l180Details = new DeviceDetails(partitions);
+
+		File l180DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-180L/180l.xml");
+		serializer.write(l180Details, l180DetailsFile);
+		
 		//LG-180L
 		ArrayList<Action> s180actions = new ArrayList<Action>();
 		Device s180 = new Device();
@@ -580,6 +688,7 @@ public class MakeDevices {
 		s180.setModel("LG-F180S");
 		s180.setProp_id("ro.product.Model");
 		s180.setSW_Prop_id("ro.lge.swversion");
+		s180.setDeviceDetailsLocation("LG-180S/180s.xml");
 		s180actions.add(ogunlock);
 		s180actions.add(ogMakounlock);
 		s180actions.add(disable_lge_security_og);
@@ -613,6 +722,22 @@ public class MakeDevices {
 		s180actions.add(restore_efs_apq8064);
 		s180actions.add(restore_backups_og);
 		s180.setActions(s180actions);
+		
+		partitions = new ArrayList<Partition>();
+		partitions.add(new Partition("aboot","mmcblk0p5",true));
+		partitions.add(new Partition("sbl1","mmcblk0p2",true));
+		partitions.add(new Partition("sbl2","mmcblk0p3",true));
+		partitions.add(new Partition("sbl3","mmcblk0p4",true));
+		partitions.add(new Partition("recovery","mmcblk0p27",false));
+		partitions.add(new Partition("boot","mmcblk0p7",false));
+		partitions.add(new Partition("m9kefs1","mmcblk0p12",false));
+		partitions.add(new Partition("m9kefs2","mmcblk0p13",false));
+		partitions.add(new Partition("m9kefs3","mmcblk0p14",false));
+		
+		DeviceDetails s180Details = new DeviceDetails(partitions);
+
+		File s180DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-180S/180s.xml");
+		serializer.write(s180Details, s180DetailsFile);
 		
 		//LG-E980
 		ArrayList<Action> e980actions = new ArrayList<Action>();
@@ -1161,12 +1286,11 @@ public class MakeDevices {
 		devices.add(vs980);
 		devices.add(vs980_12b);
 		ddevices.setDevices(devices);
+
+		File devices2 = new File("/mnt/Android/optimusg/freegee/2.0/devices2.xml");
+		serializer.write(ddevices, devices2);
 		
-		Serializer serializer = new Persister();
-		File example = new File("/mnt/Android/optimusg/freegee/2.0/devices.xml");
-		serializer.write(ddevices, example);
-		
-		Devices newDevices = serializer.read(Devices.class, example);
+		Devices newDevices = serializer.read(Devices.class, devices2);
 		for(Device a:newDevices.getDevices()){
 			for(Action b:a.getActions()){
 				System.out.println(b.getName());
