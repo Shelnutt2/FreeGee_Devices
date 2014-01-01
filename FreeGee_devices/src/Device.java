@@ -10,27 +10,24 @@ public class Device {
     private String name;
 	@ElementList
     private ArrayList<String> carrier;
-	/*@ElementList(required=false)
-    private ArrayList<String> partitions;*/
-	@Element
-    private String model;
+	@ElementList
+    private ArrayList<String> model;
 	@ElementList
     private ArrayList<String> firmware;
 	@Element
     private String prop_id;
 	@Element
     private String sw_prop_id;
-	@Element // 0 = mako aboot, 1 = loki
-    private int bootloaderExploit;
+	@Element(required=false) // 0 = mako aboot, 1 = loki
+    private int bootloaderExploit = 1;
     @ElementList
     private ArrayList< Action > actions;
     @Element(required=false)
     private String deviceDetailsLocation;
 
-    public Device(String name, ArrayList<String> carrier, String model, ArrayList<String> firmware, String prop_id, String sw_prop_id, int bootloaderExploit, ArrayList< Action > actions, String deviceDetailsLocation){
+    public Device(@Element (name = "name") String name, @ElementList (name = "carrier") ArrayList<String> carrier, @ElementList (name = "model") ArrayList<String> model, @ElementList (name = "firmware") ArrayList<String> firmware, @Element (name = "prop_id") String prop_id, @Element (name = "sw_prop_id") String sw_prop_id, @Element (name = "bootloaderExploit") int bootloaderExploit, @ElementList (name = "actions") ArrayList< Action > actions, @Element (name = "deviceDetailsLocation") String deviceDetailsLocation){
     	this.name = name;
     	this.carrier = carrier;
-    	//this.partitions = partitions;
     	this.model = model;
     	this.firmware = firmware;
     	this.prop_id = prop_id;
@@ -50,11 +47,7 @@ public class Device {
     	return carrier;
     }
 
-/*    public ArrayList<String> getPartitions(){
-    	return partitions;
-    }*/
-
-    public String getModel(){
+    public ArrayList<String> getModel(){
     	return model;
     }
 
@@ -90,11 +83,7 @@ public class Device {
     	this.carrier = carrier;
     }
 
-/*    public void setPartitions(ArrayList<String> partitions){
-    	this.partitions = partitions;
-    }*/
-
-    public void setModel(String model){
+    public void setModel(ArrayList<String> model){
     	this.model = model;
     }
 
