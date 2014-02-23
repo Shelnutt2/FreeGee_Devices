@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Serializer;
@@ -13,7 +11,6 @@ public class MakeDevices {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Devices ddevices = new Devices();
 		Serializer serializer = new Persister();
 		
@@ -26,7 +23,7 @@ public class MakeDevices {
 		Action loki_boot = new Action();
 		loki_boot.setName("loki_boot");
 		loki_boot.setDescription("This will loki the boot image as needed");
-		loki_boot.setMd5sum("e408d2a30950a9d36caa14d785827298");
+		loki_boot.setMd5sum("74af8de898159bb4bdfd058f4b858844");
 		loki_boot.setVersion("1");
 		loki_boot.setHidden(true);
 		loki_boot.setZipFile("loki_boot.zip");
@@ -36,7 +33,7 @@ public class MakeDevices {
 		Action loki_recovery = new Action();
 		loki_recovery.setName("loki_recovery");
 		loki_recovery.setDescription("This will loki the recovery image as needed");
-		loki_recovery.setMd5sum("b1b3116e81f58957d65342f3370dd8b8");
+		loki_recovery.setMd5sum("fb1b35bf05f1200e7f508962939296aa");
 		loki_recovery.setVersion("1");
 		loki_recovery.setHidden(true);
 		loki_recovery.setZipFile("loki_recovery.zip");
@@ -46,13 +43,34 @@ public class MakeDevices {
 		Action loki_check = new Action();
 		loki_check.setName("loki_check");
 		loki_check.setDescription("This will check if the aboot is supported by loki");
-		loki_check.setMd5sum("e408d2a30950a9d36caa14d785827298");
+		loki_check.setMd5sum("24ca4d079b533dc2c96e8b05ee210aeb");
 		loki_check.setVersion("1");
 		loki_check.setHidden(true);
 		loki_check.setZipFile("loki_check.zip");
 		loki_check.setZipFileLocation("loki_check.zip");
 		loki_check.setPriority(20);
 
+		Action loki_update_zip = new Action();
+		loki_update_zip.setName("loki_update_zip");
+		loki_update_zip.setDescription("This will update a zip with a newer version of loki_patch and loki_flash");
+		loki_update_zip.setMd5sum("f4bcee1c76bf0100c73faacc28822406");
+		loki_update_zip.setVersion("1");
+		loki_update_zip.setHidden(true);
+		loki_update_zip.setZipFile("loki_update_zip.zip");
+		loki_update_zip.setZipFileLocation("loki_update_zip.zip");
+		loki_update_zip.setPriority(20);
+		
+		Action revert_aboot_zva = new Action();
+		revert_aboot_zva.setName("Revert ZVA Aboot");
+		revert_aboot_zva.setDescription("This will revert the Sprint ZVA update to ZV8 aboot");
+		revert_aboot_zva.setMd5sum("a918f9f42f216d1079d4e1e9a915e086");
+		revert_aboot_zva.setVersion("1");
+		revert_aboot_zva.setStockOnly(true);
+		revert_aboot_zva.setHidden(true);
+		revert_aboot_zva.setZipFile("revert_aboot_zva.zip");
+		revert_aboot_zva.setZipFileLocation("revert_aboot_zva.zip");
+		revert_aboot_zva.setPriority(11);
+		
 		Action disable_lge_security_og = new Action();
 		disable_lge_security_og.setName("Disable LGE Security");
 		disable_lge_security_og.setDescription("This will Disable LGE Security and enable you to uninstall system apps");
@@ -89,7 +107,7 @@ public class MakeDevices {
 		Action disable_lge_security_msm8974 = new Action();
 		disable_lge_security_msm8974.setName("Disable LGE Security");
 		disable_lge_security_msm8974.setDescription("This will Disable LGE Security and enable you to uninstall system apps");
-		disable_lge_security_msm8974.setMd5sum("e8524ee0ec96d73dbc34ae46916ec12a");
+		disable_lge_security_msm8974.setMd5sum("48d8d3f383a3f5315a98b54c396a430b");
 		disable_lge_security_msm8974.setVersion("1");
 		disable_lge_security_msm8974.setStockOnly(true);
 		disable_lge_security_msm8974.setHidden(true);
@@ -180,6 +198,38 @@ public class MakeDevices {
 		ogunlock.setZipFile("og_unlock.zip");
 		ogunlock.setZipFileLocation("og_unlock.zip");
 		
+		ArrayList<Action> optimusgCommonActions = new ArrayList<Action>();
+		optimusgCommonActions.add(ogunlock);
+		optimusgCommonActions.add(ogMakounlock);
+		optimusgCommonActions.add(disable_lge_security_og);
+		optimusgCommonActions.add(fix_stock_recovery_og);
+		optimusgCommonActions.add(backup_efs_apq8064);
+		optimusgCommonActions.add(restore_efs_apq8064);
+		optimusgCommonActions.add(restore_backups_og);
+		optimusgCommonActions.add(loki_update_zip);
+		
+		ArrayList<Action> optimusgproCommonActions = new ArrayList<Action>();
+		optimusgproCommonActions.add(disable_lge_security_loki);
+		optimusgproCommonActions.add(backup_efs_apq8064);
+		optimusgproCommonActions.add(restore_efs_apq8064);
+		optimusgproCommonActions.add(loki_boot);
+		optimusgproCommonActions.add(loki_recovery);
+		optimusgproCommonActions.add(loki_check);
+		optimusgproCommonActions.add(loki_update_zip);
+		optimusgproCommonActions.add(loki_update_zip);
+		
+
+		ArrayList<Action> g2CommonActions = new ArrayList<Action>();
+		g2CommonActions.add(disable_lge_security_msm8974);
+		g2CommonActions.add(loki_check);
+		g2CommonActions.add(loki_boot);
+		g2CommonActions.add(loki_recovery);
+		g2CommonActions.add(loki_update_zip);
+		g2CommonActions.add(backup_efs_msm8974);
+		g2CommonActions.add(restore_efs_msm8974);
+		g2CommonActions.add(restore_backups_msm8974);
+		g2CommonActions.add(loki_update_zip);
+		
 		//LG-LS970
 		ArrayList<Action> ls970actions = new ArrayList<Action>();
 		Device ls970 = new Device();
@@ -197,10 +247,7 @@ public class MakeDevices {
 		ls970.setSW_Prop_id("ro.lge.swversion");
 		ls970.setBootloaderExploit(0);
 		ls970.setDeviceDetailsLocation("LG-LS970/ls970.xml");
-		ls970actions.add(ogunlock);
-		ls970actions.add(ogMakounlock);
-		ls970actions.add(disable_lge_security_og);
-		ls970actions.add(fix_stock_recovery_og);
+		ls970actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_ls970 = new Action();
 		cwm_6045_ls970.setName("CWM-6.0.4.5");
@@ -213,7 +260,33 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_ls970 = new ArrayList<Action>();
 		rdepse_cwm_6045_ls970.add(ogMakounlock);
 		cwm_6045_ls970.setDependencies(rdepse_cwm_6045_ls970);
-		ls970actions.add(cwm_6045_ls970);
+		//ls970actions.add(cwm_6045_ls970);
+		
+		Action cwm_6046_ls970 = new Action();
+		cwm_6046_ls970.setName("CWM-6.0.4.6");
+		cwm_6046_ls970.setDescription("This will install "+cwm_6046_ls970.getName() + " and unlock your device as necessary.");
+		cwm_6046_ls970.setMd5sum("8dc8aec1078d1008bbed9ef3e9a3249a");
+		cwm_6046_ls970.setVersion("1");
+		cwm_6046_ls970.setZipFile("cwm-6.0.4.6-ls970.zip");
+		cwm_6046_ls970.setZipFileLocation("LG-LS970/cwm-6.0.4.6-ls970.zip");
+		cwm_6046_ls970.setPriority(5);
+		ArrayList<Action> rdepse_cwm_6046_ls970 = new ArrayList<Action>();
+		rdepse_cwm_6046_ls970.add(ogMakounlock);
+		cwm_6046_ls970.setDependencies(rdepse_cwm_6046_ls970);
+		ls970actions.add(cwm_6046_ls970);
+		
+		Action cwm_6047_ls970 = new Action();
+		cwm_6047_ls970.setName("CWM-6.0.4.7");
+		cwm_6047_ls970.setDescription("This will install "+cwm_6047_ls970.getName() + " and unlock your device as necessary.");
+		cwm_6047_ls970.setMd5sum("6a7ccc529f614ccd1e99aac75c564a2b");
+		cwm_6047_ls970.setVersion("1");
+		cwm_6047_ls970.setZipFile("cwm-6.0.4.7-ls970.zip");
+		cwm_6047_ls970.setZipFileLocation("LG-LS970/cwm-6.0.4.7-ls970.zip");
+		cwm_6047_ls970.setPriority(5);
+		ArrayList<Action> rdepse_cwm_6047_ls970 = new ArrayList<Action>();
+		rdepse_cwm_6047_ls970.add(ogMakounlock);
+		cwm_6047_ls970.setDependencies(rdepse_cwm_6047_ls970);
+		ls970actions.add(cwm_6047_ls970);
 		
 		Action twrp_2630_ls970 = new Action();
 		twrp_2630_ls970.setName("TWRP-2.6.3.3");
@@ -226,10 +299,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_ls970.add(ogMakounlock);
 		twrp_2630_ls970.setDependencies(rdepse_twrp_2630_ls970);
 		ls970actions.add(twrp_2630_ls970);
-		
-		ls970actions.add(backup_efs_apq8064);
-		ls970actions.add(restore_efs_apq8064);
-		ls970actions.add(restore_backups_og);
+
 		ls970.setActions(ls970actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -267,10 +337,7 @@ public class MakeDevices {
 		e970.setSW_Prop_id("ro.lge.swversion");
 		e970.setBootloaderExploit(0);
 		e970.setDeviceDetailsLocation("LG-E970/e970.xml");
-		e970actions.add(ogunlock);
-		e970actions.add(ogMakounlock);
-		e970actions.add(disable_lge_security_og);
-		e970actions.add(fix_stock_recovery_og);
+		e970actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_e970 = new Action();
 		cwm_6045_e970.setName("CWM-6.0.4.5");
@@ -282,8 +349,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_e970 = new ArrayList<Action>();
 		rdepse_cwm_6045_e970.add(ogMakounlock);
 		cwm_6045_e970.setDependencies(rdepse_cwm_6045_e970);
-		e970actions.add(cwm_6045_e970);
+		//e970actions.add(cwm_6045_e970);
 		
+		Action cwm_6046_e970 = new Action();
+		cwm_6046_e970.setName("CWM-6.0.4.6");
+		cwm_6046_e970.setDescription("This will install "+cwm_6046_e970.getName() + " and unlock your device as necessary.");
+		cwm_6046_e970.setMd5sum("5c3788938877c5ebb637674f562226c0");
+		cwm_6046_e970.setVersion("1");
+		cwm_6046_e970.setZipFile("cwm-6.0.4.6-e970.zip");
+		cwm_6046_e970.setZipFileLocation("LG-E970/cwm-6.0.4.6-e970.zip");
+		ArrayList<Action> rdepse_cwm_6046_e970 = new ArrayList<Action>();
+		rdepse_cwm_6046_e970.add(ogMakounlock);
+		cwm_6046_e970.setDependencies(rdepse_cwm_6046_e970);
+		e970actions.add(cwm_6046_e970);
+		
+		Action cwm_6047_e970 = new Action();
+		cwm_6047_e970.setName("CWM-6.0.4.7");
+		cwm_6047_e970.setDescription("This will install "+cwm_6047_e970.getName() + " and unlock your device as necessary.");
+		cwm_6047_e970.setMd5sum("40bcbfea623ce73e629746991a036f8d");
+		cwm_6047_e970.setVersion("1");
+		cwm_6047_e970.setZipFile("cwm-6.0.4.7-e970.zip");
+		cwm_6047_e970.setZipFileLocation("LG-E970/cwm-6.0.4.7-e970.zip");
+		ArrayList<Action> rdepse_cwm_6047_e970 = new ArrayList<Action>();
+		rdepse_cwm_6047_e970.add(ogMakounlock);
+		cwm_6047_e970.setDependencies(rdepse_cwm_6047_e970);
+		e970actions.add(cwm_6047_e970);
 		
 		Action twrp_2630_e970 = new Action();
 		twrp_2630_e970.setName("TWRP-2.6.3.3");
@@ -296,10 +386,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_e970.add(ogMakounlock);
 		twrp_2630_e970.setDependencies(rdepse_twrp_2630_e970);
 		e970actions.add(twrp_2630_e970);
-		
-		e970actions.add(backup_efs_apq8064);
-		e970actions.add(restore_efs_apq8064);
-		e970actions.add(restore_backups_og);
+
 		e970.setActions(e970actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -337,10 +424,7 @@ public class MakeDevices {
 		e971.setSW_Prop_id("ro.lge.swversion");
 		e971.setBootloaderExploit(0);
 		e971.setDeviceDetailsLocation("LG-E973/e973.xml");
-		e971actions.add(ogunlock);
-		e971actions.add(ogMakounlock);
-		e971actions.add(disable_lge_security_og);
-		e971actions.add(fix_stock_recovery_og);
+		e971actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_e971 = new Action();
 		cwm_6045_e971.setName("CWM-6.0.4.5");
@@ -352,7 +436,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_e971 = new ArrayList<Action>();
 		rdepse_cwm_6045_e971.add(ogMakounlock);
 		cwm_6045_e971.setDependencies(rdepse_cwm_6045_e971);
-		e971actions.add(cwm_6045_e971);
+		//e971actions.add(cwm_6045_e971);
+		
+		Action cwm_6046_e973 = new Action();
+		cwm_6046_e973.setName("CWM-6.0.4.6");
+		cwm_6046_e973.setDescription("This will install "+cwm_6046_e973.getName() + " and unlock your device as necessary.");
+		cwm_6046_e973.setMd5sum("e498ea13bdc88b4ce257ae30dfb2e06d");
+		cwm_6046_e973.setVersion("1");
+		cwm_6046_e973.setZipFile("cwm-6.0.4.6-e973.zip");
+		cwm_6046_e973.setZipFileLocation("LG-E973/cwm-6.0.4.6-e973.zip");
+		ArrayList<Action> rdepse_cwm_6046_e973 = new ArrayList<Action>();
+		rdepse_cwm_6046_e973.add(ogMakounlock);
+		cwm_6046_e973.setDependencies(rdepse_cwm_6046_e973);
+		e971actions.add(cwm_6046_e973);
+		
+		Action cwm_6047_e973 = new Action();
+		cwm_6047_e973.setName("CWM-6.0.4.7");
+		cwm_6047_e973.setDescription("This will install "+cwm_6047_e973.getName() + " and unlock your device as necessary.");
+		cwm_6047_e973.setMd5sum("8f1cc64483842b02e3eb8f6fcbdac3d8");
+		cwm_6047_e973.setVersion("1");
+		cwm_6047_e973.setZipFile("cwm-6.0.4.7-e973.zip");
+		cwm_6047_e973.setZipFileLocation("LG-E973/cwm-6.0.4.7-e973.zip");
+		ArrayList<Action> rdepse_cwm_6047_e973 = new ArrayList<Action>();
+		rdepse_cwm_6047_e973.add(ogMakounlock);
+		cwm_6047_e973.setDependencies(rdepse_cwm_6047_e973);
+		e971actions.add(cwm_6047_e973);
 		
 		Action twrp_2630_e973 = new Action();
 		twrp_2630_e973.setName("TWRP-2.6.3.3");
@@ -364,11 +472,8 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_twrp_2630_e973 = new ArrayList<Action>();
 		rdepse_twrp_2630_e973.add(ogMakounlock);
 		twrp_2630_e973.setDependencies(rdepse_twrp_2630_e973);
-
 		e971actions.add(twrp_2630_e973);
-		e971actions.add(backup_efs_apq8064);
-		e971actions.add(restore_efs_apq8064);
-		e971actions.add(restore_backups_og);
+
 		e971.setActions(e971actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -406,10 +511,7 @@ public class MakeDevices {
 		e973.setSW_Prop_id("ro.lge.swversion");
 		e973.setBootloaderExploit(0);
 		e973.setDeviceDetailsLocation("LG-E973/e973.xml");
-		e973actions.add(ogunlock);
-		e973actions.add(ogMakounlock);
-		e973actions.add(disable_lge_security_og);
-		e973actions.add(fix_stock_recovery_og);
+		e973actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_e973 = new Action();
 		cwm_6045_e973.setName("CWM-6.0.4.5");
@@ -421,12 +523,11 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_e973 = new ArrayList<Action>();
 		rdepse_cwm_6045_e973.add(ogunlock);
 		cwm_6045_e973.setDependencies(rdepse_cwm_6045_e973);
-		e973actions.add(cwm_6045_e973);
-		
+		//e973actions.add(cwm_6045_e973);
+		e973actions.add(cwm_6046_e973);
+		e973actions.add(cwm_6047_e973);
 		e973actions.add(twrp_2630_e973);
-		e973actions.add(backup_efs_apq8064);
-		e973actions.add(restore_efs_apq8064);
-		e973actions.add(restore_backups_og);
+
 		e973.setActions(e973actions);
 		
 		//LG-E975
@@ -446,10 +547,7 @@ public class MakeDevices {
 		e975.setSW_Prop_id("ro.lge.swversion");
 		e975.setBootloaderExploit(0);
 		e975.setDeviceDetailsLocation("LG-E975/e975.xml");
-		e975actions.add(ogunlock);
-		e975actions.add(ogMakounlock);
-		e975actions.add(disable_lge_security_og);
-		e975actions.add(fix_stock_recovery_og);
+		e975actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_e975 = new Action();
 		cwm_6045_e975.setName("CWM-6.0.4.5");
@@ -461,7 +559,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_e975 = new ArrayList<Action>();
 		rdepse_cwm_6045_e975.add(ogMakounlock);
 		cwm_6045_e975.setDependencies(rdepse_cwm_6045_e975);
-		e975actions.add(cwm_6045_e975);
+		//e975actions.add(cwm_6045_e975);
+		
+		Action cwm_6046_e975 = new Action();
+		cwm_6046_e975.setName("CWM-6.0.4.6");
+		cwm_6046_e975.setDescription("This will install "+cwm_6046_e975.getName() + " and unlock your device as necessary.");
+		cwm_6046_e975.setMd5sum("0a9a13af8cc0b3dafda91c22473fa6ef");
+		cwm_6046_e975.setVersion("1");
+		cwm_6046_e975.setZipFile("cwm-6.0.4.6-e975.zip");
+		cwm_6046_e975.setZipFileLocation("LG-E975/cwm-6.0.4.6-e975.zip");
+		ArrayList<Action> rdepse_cwm_6046_e975 = new ArrayList<Action>();
+		rdepse_cwm_6046_e975.add(ogMakounlock);
+		cwm_6046_e975.setDependencies(rdepse_cwm_6046_e975);
+		e975actions.add(cwm_6046_e975);
+		
+		Action cwm_6047_e975 = new Action();
+		cwm_6047_e975.setName("CWM-6.0.4.7");
+		cwm_6047_e975.setDescription("This will install "+cwm_6047_e975.getName() + " and unlock your device as necessary.");
+		cwm_6047_e975.setMd5sum("cc5b2e72fa30472660a08f5a933ba450");
+		cwm_6047_e975.setVersion("1");
+		cwm_6047_e975.setZipFile("cwm-6.0.4.7-e975.zip");
+		cwm_6047_e975.setZipFileLocation("LG-E975/cwm-6.0.4.7-e975.zip");
+		ArrayList<Action> rdepse_cwm_6047_e975 = new ArrayList<Action>();
+		rdepse_cwm_6047_e975.add(ogMakounlock);
+		cwm_6047_e975.setDependencies(rdepse_cwm_6047_e975);
+		e975actions.add(cwm_6047_e975);
 		
 		Action twrp_2630_e975 = new Action();
 		twrp_2630_e975.setName("TWRP-2.6.3.3");
@@ -474,10 +596,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_e975.add(ogMakounlock);
 		twrp_2630_e975.setDependencies(rdepse_twrp_2630_e975);
 		e975actions.add(twrp_2630_e975);
-		
-		e975actions.add(backup_efs_apq8064);
-		e975actions.add(restore_efs_apq8064);
-		e975actions.add(restore_backups_og);
+
 		e975.setActions(e975actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -533,7 +652,6 @@ public class MakeDevices {
 		e975w.setActions(e975actions);
 
 		//LG-E976
-		ArrayList<Action> e976actions = new ArrayList<Action>();
 		Device e976 = new Device();
 		e976.setName("LG Optimus G");
 		carrier = new ArrayList<String>();
@@ -549,19 +667,9 @@ public class MakeDevices {
 		e976.setSW_Prop_id("ro.lge.swversion");
 		e976.setBootloaderExploit(0);
 		e976.setDeviceDetailsLocation("LG-E975/e975.xml");
-		e976actions.add(ogunlock);
-		e976actions.add(ogMakounlock);
-		e976actions.add(disable_lge_security_og);
-		e976actions.add(fix_stock_recovery_og);
-		e976actions.add(cwm_6045_e975);
-		e976actions.add(twrp_2630_e975);
-		e976actions.add(backup_efs_apq8064);
-		e976actions.add(restore_efs_apq8064);
-		e976actions.add(restore_backups_og);
-		e976.setActions(e976actions);
+		e976.setActions(e975actions);
 		
 		//LG-E977
-		ArrayList<Action> e977actions = new ArrayList<Action>();
 		Device e977 = new Device();
 		e977.setName("LG Optimus G");
 		carrier = new ArrayList<String>();
@@ -577,19 +685,9 @@ public class MakeDevices {
 		e977.setSW_Prop_id("ro.lge.swversion");
 		e977.setBootloaderExploit(0);
 		e977.setDeviceDetailsLocation("LG-E975/e975.xml");
-		e977actions.add(ogunlock);
-		e977actions.add(ogMakounlock);
-		e977actions.add(disable_lge_security_og);
-		e977actions.add(fix_stock_recovery_og);
-		e977actions.add(cwm_6045_e975);
-		e977actions.add(twrp_2630_e975);
-		e977actions.add(backup_efs_apq8064);
-		e977actions.add(restore_efs_apq8064);
-		e977actions.add(restore_backups_og);
-		e977.setActions(e977actions);
+		e977.setActions(e975actions);
 		
 		//LG-E987
-		ArrayList<Action> e987actions = new ArrayList<Action>();
 		Device e987 = new Device();
 		e987.setName("LG Optimus G");
 		carrier = new ArrayList<String>();
@@ -605,16 +703,7 @@ public class MakeDevices {
 		e987.setSW_Prop_id("ro.lge.swversion");
 		e987.setBootloaderExploit(0);
 		e987.setDeviceDetailsLocation("LG-E975/e975.xml");
-		e987actions.add(ogunlock);
-		e987actions.add(ogMakounlock);
-		e987actions.add(disable_lge_security_og);
-		e987actions.add(fix_stock_recovery_og);
-		e987actions.add(cwm_6045_e975);
-		e987actions.add(twrp_2630_e975);
-		e987actions.add(backup_efs_apq8064);
-		e987actions.add(restore_efs_apq8064);
-		e987actions.add(restore_backups_og);
-		e987.setActions(e987actions);
+		e987.setActions(e975actions);
 		
 		//LG-180K
 		ArrayList<Action> k180actions = new ArrayList<Action>();
@@ -633,10 +722,7 @@ public class MakeDevices {
 		k180.setSW_Prop_id("ro.lge.swversion");
 		k180.setBootloaderExploit(0);
 		k180.setDeviceDetailsLocation("LG-180K/180k.xml");
-		k180actions.add(ogunlock);
-		k180actions.add(ogMakounlock);
-		k180actions.add(disable_lge_security_og);
-		k180actions.add(fix_stock_recovery_og);
+		k180actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_180k = new Action();
 		cwm_6045_180k.setName("CWM-6.0.4.5");
@@ -648,7 +734,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_180k = new ArrayList<Action>();
 		rdepse_cwm_6045_180k.add(ogMakounlock);
 		cwm_6045_180k.setDependencies(rdepse_cwm_6045_180k);
-		k180actions.add(cwm_6045_180k);
+		//k180actions.add(cwm_6045_180k);
+		
+		Action cwm_6046_180k = new Action();
+		cwm_6046_180k.setName("CWM-6.0.4.6");
+		cwm_6046_180k.setDescription("This will install "+cwm_6046_180k.getName() + " and unlock your device as necessary.");
+		cwm_6046_180k.setMd5sum("3967795eaeaa16eb4bf517844dd728de");
+		cwm_6046_180k.setVersion("1");
+		cwm_6046_180k.setZipFile("cwm-6.0.4.6-180k.zip");
+		cwm_6046_180k.setZipFileLocation("LG-180K/cwm-6.0.4.6-180k.zip");
+		ArrayList<Action> rdepse_cwm_6046_180k = new ArrayList<Action>();
+		rdepse_cwm_6046_180k.add(ogMakounlock);
+		cwm_6046_180k.setDependencies(rdepse_cwm_6046_180k);
+		//k180actions.add(cwm_6046_180k);
+		
+		Action cwm_6047_180k = new Action();
+		cwm_6047_180k.setName("CWM-6.0.4.7");
+		cwm_6047_180k.setDescription("This will install "+cwm_6047_180k.getName() + " and unlock your device as necessary.");
+		cwm_6047_180k.setMd5sum("88f067778aed07a2db99fe524c0fa07e");
+		cwm_6047_180k.setVersion("1");
+		cwm_6047_180k.setZipFile("cwm-6.0.4.7-180k.zip");
+		cwm_6047_180k.setZipFileLocation("LG-180K/cwm-6.0.4.7-180k.zip");
+		ArrayList<Action> rdepse_cwm_6047_180k = new ArrayList<Action>();
+		rdepse_cwm_6047_180k.add(ogMakounlock);
+		cwm_6047_180k.setDependencies(rdepse_cwm_6047_180k);
+		k180actions.add(cwm_6047_180k);
 		
 		Action twrp_2630_180k = new Action();
 		twrp_2630_180k.setName("TWRP-2.6.3.3");
@@ -661,10 +771,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_180k.add(ogMakounlock);
 		twrp_2630_180k.setDependencies(rdepse_twrp_2630_180k);
 		k180actions.add(twrp_2630_180k);
-		
-		k180actions.add(backup_efs_apq8064);
-		k180actions.add(restore_efs_apq8064);
-		k180actions.add(restore_backups_og);
+
 		k180.setActions(k180actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -700,10 +807,7 @@ public class MakeDevices {
 		l180.setSW_Prop_id("ro.lge.swversion");
 		l180.setBootloaderExploit(0);
 		l180.setDeviceDetailsLocation("LG-180l/180l.xml");
-		l180actions.add(ogunlock);
-		l180actions.add(ogMakounlock);
-		l180actions.add(disable_lge_security_og);
-		l180actions.add(fix_stock_recovery_og);
+		l180actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_180l = new Action();
 		cwm_6045_180l.setName("CWM-6.0.4.5");
@@ -715,7 +819,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_180l = new ArrayList<Action>();
 		rdepse_cwm_6045_180l.add(ogMakounlock);
 		cwm_6045_180l.setDependencies(rdepse_cwm_6045_180l);
-		l180actions.add(cwm_6045_180l);
+		//l180actions.add(cwm_6045_180l);
+		
+		Action cwm_6046_180l = new Action();
+		cwm_6046_180l.setName("CWM-6.0.4.6");
+		cwm_6046_180l.setDescription("This will install "+cwm_6046_180l.getName() + " and unlock your device as necessary.");
+		cwm_6046_180l.setMd5sum("7498fece4db05f410764fb4c5e9d8192");
+		cwm_6046_180l.setVersion("1");
+		cwm_6046_180l.setZipFile("cwm-6.0.4.6-180l.zip");
+		cwm_6046_180l.setZipFileLocation("LG-180L/cwm-6.0.4.6-180l.zip");
+		ArrayList<Action> rdepse_cwm_6046_180l = new ArrayList<Action>();
+		rdepse_cwm_6046_180l.add(ogMakounlock);
+		cwm_6046_180l.setDependencies(rdepse_cwm_6046_180l);
+		//l180actions.add(cwm_6046_180l);
+		
+		Action cwm_6047_180l = new Action();
+		cwm_6047_180l.setName("CWM-6.0.4.7");
+		cwm_6047_180l.setDescription("This will install "+cwm_6047_180l.getName() + " and unlock your device as necessary.");
+		cwm_6047_180l.setMd5sum("2ec23929f69229910c7e42bc10f6a611");
+		cwm_6047_180l.setVersion("1");
+		cwm_6047_180l.setZipFile("cwm-6.0.4.7-180l.zip");
+		cwm_6047_180l.setZipFileLocation("LG-180L/cwm-6.0.4.7-180l.zip");
+		ArrayList<Action> rdepse_cwm_6047_180l = new ArrayList<Action>();
+		rdepse_cwm_6047_180l.add(ogMakounlock);
+		cwm_6047_180l.setDependencies(rdepse_cwm_6047_180l);
+		l180actions.add(cwm_6047_180l);
 		
 		Action twrp_2630_180l = new Action();
 		twrp_2630_180l.setName("TWRP-2.6.3.3");
@@ -728,10 +856,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_180l.add(ogMakounlock);
 		twrp_2630_180l.setDependencies(rdepse_twrp_2630_180l);
 		l180actions.add(twrp_2630_180l);
-		
-		l180actions.add(backup_efs_apq8064);
-		l180actions.add(restore_efs_apq8064);
-		l180actions.add(restore_backups_og);
+
 		l180.setActions(l180actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -750,7 +875,7 @@ public class MakeDevices {
 		File l180DetailsFile = new File("/mnt/Android/optimusg/freegee/2.0/devices/LG-180L/180l.xml");
 		serializer.write(l180Details, l180DetailsFile);
 		
-		//LG-180L
+		//LG-180S
 		ArrayList<Action> s180actions = new ArrayList<Action>();
 		Device s180 = new Device();
 		s180.setName("LG Optimus G");
@@ -767,10 +892,7 @@ public class MakeDevices {
 		s180.setSW_Prop_id("ro.lge.swversion");
 		s180.setBootloaderExploit(0);
 		s180.setDeviceDetailsLocation("LG-180S/180s.xml");
-		s180actions.add(ogunlock);
-		s180actions.add(ogMakounlock);
-		s180actions.add(disable_lge_security_og);
-		s180actions.add(fix_stock_recovery_og);
+		s180actions.addAll(optimusgCommonActions);
 		
 		Action cwm_6045_180s = new Action();
 		cwm_6045_180s.setName("CWM-6.0.4.5");
@@ -782,7 +904,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_180s = new ArrayList<Action>();
 		rdepse_cwm_6045_180s.add(ogMakounlock);
 		cwm_6045_180s.setDependencies(rdepse_cwm_6045_180s);
-		k180actions.add(cwm_6045_180s);
+		//s180actions.add(cwm_6045_180s);
+		
+		Action cwm_6046_180s = new Action();
+		cwm_6046_180s.setName("CWM-6.0.4.6");
+		cwm_6046_180s.setDescription("This will install "+cwm_6046_180s.getName() + " and unlock your device as necessary.");
+		cwm_6046_180s.setMd5sum("e22db5b9165a8599e85934d1dcf5aacc");
+		cwm_6046_180s.setVersion("1");
+		cwm_6046_180s.setZipFile("cwm-6.0.4.6-180s.zip");
+		cwm_6046_180s.setZipFileLocation("LG-180S/cwm-6.0.4.6-180s.zip");
+		ArrayList<Action> rdepse_cwm_6046_180s = new ArrayList<Action>();
+		rdepse_cwm_6046_180s.add(ogMakounlock);
+		cwm_6046_180s.setDependencies(rdepse_cwm_6046_180s);
+		s180actions.add(cwm_6046_180s);
+		
+		Action cwm_6047_180s = new Action();
+		cwm_6047_180s.setName("CWM-6.0.4.7");
+		cwm_6047_180s.setDescription("This will install "+cwm_6047_180s.getName() + " and unlock your device as necessary.");
+		cwm_6047_180s.setMd5sum("a7f5812cb102ec38d15df064ed306e81");
+		cwm_6047_180s.setVersion("1");
+		cwm_6047_180s.setZipFile("cwm-6.0.4.7-180s.zip");
+		cwm_6047_180s.setZipFileLocation("LG-180S/cwm-6.0.4.7-180s.zip");
+		ArrayList<Action> rdepse_cwm_6047_180s = new ArrayList<Action>();
+		rdepse_cwm_6047_180s.add(ogMakounlock);
+		cwm_6047_180s.setDependencies(rdepse_cwm_6047_180s);
+		s180actions.add(cwm_6047_180s);
 		
 		Action twrp_2630_180s = new Action();
 		twrp_2630_180s.setName("TWRP-2.6.3.3");
@@ -795,10 +941,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_180s.add(ogMakounlock);
 		twrp_2630_180s.setDependencies(rdepse_twrp_2630_180s);
 		s180actions.add(twrp_2630_180s);
-		
-		s180actions.add(backup_efs_apq8064);
-		s180actions.add(restore_efs_apq8064);
-		s180actions.add(restore_backups_og);
+
 		s180.setActions(s180actions);
 		
 		partitions = new ArrayList<Partition>();
@@ -829,14 +972,12 @@ public class MakeDevices {
 		e980.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-E980");
+		model.add("Optimus G Pro");
 		e980.setModel(model);
 		e980.setProp_id("ro.product.Model");
 		e980.setSW_Prop_id("ro.lge.swversion");
 		e980.setBootloaderExploit(1);
-		e980actions.add(disable_lge_security_loki);
-		e980actions.add(loki_check);
-		e980actions.add(loki_boot);
-		e980actions.add(loki_recovery);
+		e980actions.addAll(optimusgproCommonActions);
 		
 		Action cwm_6045_e980 = new Action();
 		cwm_6045_e980.setName("CWM-6.0.4.5");
@@ -848,7 +989,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_e980 = new ArrayList<Action>();
 		rdepse_cwm_6045_e980.add(loki_recovery);
 		cwm_6045_e980.setDependencies(rdepse_cwm_6045_e980);
-		e980actions.add(cwm_6045_e980);
+		//e980actions.add(cwm_6045_e980);
+		
+		Action cwm_6046_e980 = new Action();
+		cwm_6046_e980.setName("CWM-6.0.4.6");
+		cwm_6046_e980.setDescription("This will install "+cwm_6046_e980.getName());
+		cwm_6046_e980.setMd5sum("f92c8a83cef536b39565bd8ac93bf920");
+		cwm_6046_e980.setVersion("1");
+		cwm_6046_e980.setZipFile("cwm-6.0.4.6-e980.zip");
+		cwm_6046_e980.setZipFileLocation("LG-E980/cwm-6.0.4.6-e980.zip");
+		ArrayList<Action> rdepse_cwm_6046_e980 = new ArrayList<Action>();
+		rdepse_cwm_6046_e980.add(loki_recovery);
+		cwm_6046_e980.setDependencies(rdepse_cwm_6046_e980);
+		e980actions.add(cwm_6046_e980);
+		
+		Action cwm_6047_e980 = new Action();
+		cwm_6047_e980.setName("CWM-6.0.4.7");
+		cwm_6047_e980.setDescription("This will install "+cwm_6047_e980.getName());
+		cwm_6047_e980.setMd5sum("fef03ea6d57ed7a70c02bd0762e63db4");
+		cwm_6047_e980.setVersion("1");
+		cwm_6047_e980.setZipFile("cwm-6.0.4.7-e980.zip");
+		cwm_6047_e980.setZipFileLocation("LG-E980/cwm-6.0.4.7-e980.zip");
+		ArrayList<Action> rdepse_cwm_6047_e980 = new ArrayList<Action>();
+		rdepse_cwm_6047_e980.add(loki_recovery);
+		cwm_6047_e980.setDependencies(rdepse_cwm_6047_e980);
+		e980actions.add(cwm_6047_e980);
 		
 		Action twrp_2630_e980 = new Action();
 		twrp_2630_e980.setName("TWRP-2.6.3.3");
@@ -859,11 +1024,9 @@ public class MakeDevices {
 		twrp_2630_e980.setZipFileLocation("LG-E980/twrp-2.6.3.0-e980.zip");
 		ArrayList<Action> rdepse_twrp_2630_e980 = new ArrayList<Action>();
 		rdepse_twrp_2630_e980.add(loki_recovery);
-		twrp_2630_e980.setDependencies(rdepse_twrp_2630_e980);
-		
+		twrp_2630_e980.setDependencies(rdepse_twrp_2630_e980);		
 		e980actions.add(twrp_2630_e980);
-		e980actions.add(backup_efs_apq8064);
-		e980actions.add(restore_efs_apq8064);
+
 		e980.setActions(e980actions);
 		
 		//LG-E980h
@@ -877,6 +1040,7 @@ public class MakeDevices {
 		e980h.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-E980h");
+		model.add("LG-E981h");
 		e980h.setModel(model);
 		e980h.setProp_id("ro.product.Model");
 		e980h.setSW_Prop_id("ro.lge.swversion");
@@ -884,7 +1048,6 @@ public class MakeDevices {
 		e980h.setActions(e980actions);
 		
 		//LG-E986
-		ArrayList<Action> e986actions = new ArrayList<Action>();
 		Device e986 = new Device();
 		e986.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -899,18 +1062,9 @@ public class MakeDevices {
 		e986.setProp_id("ro.product.Model");
 		e986.setSW_Prop_id("ro.lge.swversion");
 		e986.setBootloaderExploit(1);
-		e986actions.add(disable_lge_security_loki);
-		e986actions.add(loki_check);
-		e986actions.add(loki_boot);
-		e986actions.add(loki_recovery);
-		e986actions.add(cwm_6045_e980);
-		e986actions.add(twrp_2630_e980);
-		e986actions.add(backup_efs_apq8064);
-		e986actions.add(restore_efs_apq8064);
-		e986.setActions(e986actions);
+		e986.setActions(e980actions);
 		
 		//LG-E988
-		ArrayList<Action> e988actions = new ArrayList<Action>();
 		Device e988 = new Device();
 		e988.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -925,18 +1079,9 @@ public class MakeDevices {
 		e988.setProp_id("ro.product.Model");
 		e988.setSW_Prop_id("ro.lge.swversion");
 		e988.setBootloaderExploit(1);
-		e988actions.add(disable_lge_security_loki);
-		e988actions.add(loki_check);
-		e988actions.add(loki_boot);
-		e988actions.add(loki_recovery);
-		e988actions.add(cwm_6045_e980);
-		e988actions.add(twrp_2630_e980);
-		e988actions.add(backup_efs_apq8064);
-		e988actions.add(restore_efs_apq8064);
-		e988.setActions(e988actions);
+		e988.setActions(e980actions);
 		
 		//LG-E989
-		ArrayList<Action> e989actions = new ArrayList<Action>();
 		Device e989 = new Device();
 		e989.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -951,18 +1096,9 @@ public class MakeDevices {
 		e989.setProp_id("ro.product.Model");
 		e989.setSW_Prop_id("ro.lge.swversion");
 		e989.setBootloaderExploit(1);
-		e989actions.add(disable_lge_security_loki);
-		e989actions.add(loki_check);
-		e989actions.add(loki_boot);
-		e989actions.add(loki_recovery);
-		e989actions.add(cwm_6045_e980);
-		e989actions.add(twrp_2630_e980);
-		e989actions.add(backup_efs_apq8064);
-		e989actions.add(restore_efs_apq8064);
-		e989.setActions(e989actions);
+		e989.setActions(e980actions);
 		
 		//LG-F240L
-		ArrayList<Action> f240lactions = new ArrayList<Action>();
 		Device f240l = new Device();
 		f240l.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -977,18 +1113,9 @@ public class MakeDevices {
 		f240l.setProp_id("ro.product.Model");
 		f240l.setSW_Prop_id("ro.lge.swversion");
 		f240l.setBootloaderExploit(1);
-		f240lactions.add(disable_lge_security_loki);
-		f240lactions.add(loki_check);
-		f240lactions.add(loki_boot);
-		f240lactions.add(loki_recovery);
-		f240lactions.add(cwm_6045_e980);
-		f240lactions.add(twrp_2630_e980);
-		f240lactions.add(backup_efs_apq8064);
-		f240lactions.add(restore_efs_apq8064);
-		f240l.setActions(f240lactions);
+		f240l.setActions(e980actions);
 		
 		//LG-F240S
-		ArrayList<Action> f240sactions = new ArrayList<Action>();
 		Device f240s = new Device();
 		f240s.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -1003,18 +1130,9 @@ public class MakeDevices {
 		f240s.setProp_id("ro.product.Model");
 		f240s.setSW_Prop_id("ro.lge.swversion");
 		f240s.setBootloaderExploit(1);
-		f240sactions.add(disable_lge_security_loki);
-		f240sactions.add(loki_check);
-		f240sactions.add(loki_boot);
-		f240sactions.add(loki_recovery);
-		f240sactions.add(cwm_6045_e980);
-		f240sactions.add(twrp_2630_e980);
-		f240sactions.add(backup_efs_apq8064);
-		f240sactions.add(restore_efs_apq8064);
-		f240s.setActions(f240sactions);
+		f240s.setActions(e980actions);
 		
 		//LG-F240K
-		ArrayList<Action> f240kactions = new ArrayList<Action>();
 		Device f240k = new Device();
 		f240k.setName("LG Optimus G Pro");
 		carrier = new ArrayList<String>();
@@ -1029,15 +1147,7 @@ public class MakeDevices {
 		f240k.setProp_id("ro.product.Model");
 		f240k.setSW_Prop_id("ro.lge.swversion");
 		f240k.setBootloaderExploit(1);
-		f240kactions.add(disable_lge_security_loki);
-		f240kactions.add(loki_check);
-		f240kactions.add(loki_boot);
-		f240kactions.add(loki_recovery);
-		f240kactions.add(cwm_6045_e980);
-		f240kactions.add(twrp_2630_e980);
-		f240kactions.add(backup_efs_apq8064);
-		f240kactions.add(restore_efs_apq8064);
-		f240k.setActions(f240kactions);
+		f240k.setActions(e980actions);
 		
 		//LG-F220
 		ArrayList<Action> f220kactions = new ArrayList<Action>();
@@ -1070,7 +1180,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_f220 = new ArrayList<Action>();
 		rdepse_cwm_6045_f220.add(loki_recovery);
 		cwm_6045_f220.setDependencies(rdepse_cwm_6045_f220);
-		f220kactions.add(cwm_6045_f220);
+		//f220kactions.add(cwm_6045_f220);
+		
+		Action cwm_6046_f220 = new Action();
+		cwm_6046_f220.setName("CWM-6.0.4.6");
+		cwm_6046_f220.setDescription("This will install "+cwm_6046_f220.getName());
+		cwm_6046_f220.setMd5sum("f92c8a83cef536b39565bd8ac93bf920");
+		cwm_6046_f220.setVersion("1");
+		cwm_6046_f220.setZipFile("cwm-6.0.4.6-f220.zip");
+		cwm_6046_f220.setZipFileLocation("LG-F220/cwm-6.0.4.6-f220.zip");
+		ArrayList<Action> rdepse_cwm_6046_f220 = new ArrayList<Action>();
+		rdepse_cwm_6046_f220.add(loki_recovery);
+		cwm_6046_f220.setDependencies(rdepse_cwm_6046_f220);
+		f220kactions.add(cwm_6046_f220);
+		
+		Action cwm_6047_f220 = new Action();
+		cwm_6047_f220.setName("CWM-6.0.4.7");
+		cwm_6047_f220.setDescription("This will install "+cwm_6047_f220.getName());
+		cwm_6047_f220.setMd5sum("1be361ba8b1feb2c4abee3cccd59eb97");
+		cwm_6047_f220.setVersion("1");
+		cwm_6047_f220.setZipFile("cwm-6.0.4.7-f220.zip");
+		cwm_6047_f220.setZipFileLocation("LG-F220/cwm-6.0.4.7-f220.zip");
+		ArrayList<Action> rdepse_cwm_6047_f220 = new ArrayList<Action>();
+		rdepse_cwm_6047_f220.add(loki_recovery);
+		cwm_6047_f220.setDependencies(rdepse_cwm_6047_f220);
+		f220kactions.add(cwm_6047_f220);
 		
 		Action twrp_2630_f220 = new Action();
 		twrp_2630_f220.setName("TWRP-2.6.3.3");
@@ -1106,12 +1240,7 @@ public class MakeDevices {
 		d800.setProp_id("ro.product.Model");
 		d800.setSW_Prop_id("ro.lge.swversion");
 		d800.setBootloaderExploit(1);
-		d800actions.add(disable_lge_security_msm8974);
-		d800actions.add(loki_check);
-		d800actions.add(loki_boot);
-		d800actions.add(loki_recovery);
-		d800actions.add(restore_backups_msm8974);
-		
+		d800actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_d800 = new Action();
 		cwm_6045_d800.setName("CWM-6.0.4.5");
@@ -1124,6 +1253,28 @@ public class MakeDevices {
 		rdepse_cwm_6045_d800.add(loki_recovery);
 		cwm_6045_d800.setDependencies(rdepse_cwm_6045_d800);
 		
+		Action cwm_6046_d800 = new Action();
+		cwm_6046_d800.setName("CWM-6.0.4.6");
+		cwm_6046_d800.setDescription("This will install "+cwm_6046_d800.getName());
+		cwm_6046_d800.setMd5sum("93909b9e4a90cbd6fe392a707b200342");
+		cwm_6046_d800.setVersion("1");
+		cwm_6046_d800.setZipFile("cwm-6.0.4.6-d800.zip");
+		cwm_6046_d800.setZipFileLocation("LG-D800/cwm-6.0.4.6-d800.zip");
+		ArrayList<Action> rdepse_cwm_6046_d800 = new ArrayList<Action>();
+		rdepse_cwm_6046_d800.add(loki_recovery);
+		cwm_6045_d800.setDependencies(rdepse_cwm_6046_d800);
+		
+		Action cwm_6047_d800 = new Action();
+		cwm_6047_d800.setName("CWM-6.0.4.7");
+		cwm_6047_d800.setDescription("This will install "+cwm_6047_d800.getName());
+		cwm_6047_d800.setMd5sum("5d3430b36acd93c3aa3f7dd2d03b2693");
+		cwm_6047_d800.setVersion("1");
+		cwm_6047_d800.setZipFile("cwm-6.0.4.7-d800.zip");
+		cwm_6047_d800.setZipFileLocation("LG-D800/cwm-6.0.4.7-d800.zip");
+		ArrayList<Action> rdepse_cwm_6047_d800 = new ArrayList<Action>();
+		rdepse_cwm_6047_d800.add(loki_recovery);
+		cwm_6045_d800.setDependencies(rdepse_cwm_6047_d800);
+		
 		Action twrp_2630_d800 = new Action();
 		twrp_2630_d800.setName("TWRP-2.6.3.3");
 		twrp_2630_d800.setDescription("This will install "+twrp_2630_d800.getName());
@@ -1135,10 +1286,11 @@ public class MakeDevices {
 		rdepse_twrp_2630_d800.add(loki_recovery);
 		twrp_2630_d800.setDependencies(rdepse_twrp_2630_d800);
 		
-		d800actions.add(cwm_6045_d800);
+		//d800actions.add(cwm_6045_d800);
+		d800actions.add(cwm_6046_d800);
+		d800actions.add(cwm_6047_d800);
 		d800actions.add(twrp_2630_d800);
-		d800actions.add(backup_efs_msm8974);
-		d800actions.add(restore_efs_msm8974);
+
 		d800.setActions(d800actions);
 		
 		//LG-D801
@@ -1160,11 +1312,7 @@ public class MakeDevices {
 		d801.setProp_id("ro.product.Model");
 		d801.setSW_Prop_id("ro.lge.swversion");
 		d801.setBootloaderExploit(1);
-		d801actions.add(disable_lge_security_msm8974);
-		d801actions.add(loki_check);
-		d801actions.add(loki_boot);
-		d801actions.add(loki_recovery);
-		d801actions.add(restore_backups_msm8974);
+		d801actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_d801 = new Action();
 		cwm_6045_d801.setName("CWM-6.0.4.5");
@@ -1177,6 +1325,28 @@ public class MakeDevices {
 		rdepse_cwm_6045_d801.add(loki_recovery);
 		cwm_6045_d801.setDependencies(rdepse_cwm_6045_d801);
 		
+		Action cwm_6046_d801 = new Action();
+		cwm_6046_d801.setName("CWM-6.0.4.6");
+		cwm_6046_d801.setDescription("This will install "+cwm_6046_d801.getName());
+		cwm_6046_d801.setMd5sum("ec20762ed4cee3035e5fa93d2524ff34");
+		cwm_6046_d801.setVersion("1");
+		cwm_6046_d801.setZipFile("cwm-6.0.4.6-d801.zip");
+		cwm_6046_d801.setZipFileLocation("LG-D801/cwm-6.0.4.6-d801.zip");
+		ArrayList<Action> rdepse_cwm_6046_d801 = new ArrayList<Action>();
+		rdepse_cwm_6046_d801.add(loki_recovery);
+		cwm_6046_d801.setDependencies(rdepse_cwm_6046_d801);
+		
+		Action cwm_6047_d801 = new Action();
+		cwm_6047_d801.setName("CWM-6.0.4.7");
+		cwm_6047_d801.setDescription("This will install "+cwm_6047_d801.getName());
+		cwm_6047_d801.setMd5sum("8be1b34359b2dec1ee8336b2e778ea4e");
+		cwm_6047_d801.setVersion("1");
+		cwm_6047_d801.setZipFile("cwm-6.0.4.7-d801.zip");
+		cwm_6047_d801.setZipFileLocation("LG-D801/cwm-6.0.4.7-d801.zip");
+		ArrayList<Action> rdepse_cwm_6047_d801 = new ArrayList<Action>();
+		rdepse_cwm_6047_d801.add(loki_recovery);
+		cwm_6047_d801.setDependencies(rdepse_cwm_6047_d801);
+		
 		Action twrp_2630_d801 = new Action();
 		twrp_2630_d801.setName("TWRP-2.6.3.3");
 		twrp_2630_d801.setDescription("This will install "+twrp_2630_d801.getName());
@@ -1188,10 +1358,11 @@ public class MakeDevices {
 		rdepse_twrp_2630_d801.add(loki_recovery);
 		twrp_2630_d801.setDependencies(rdepse_twrp_2630_d801);
 		
-		d801actions.add(cwm_6045_d801);
+		//d801actions.add(cwm_6045_d801);
+		d801actions.add(cwm_6046_d801);
+		d801actions.add(cwm_6047_d801);
 		d801actions.add(twrp_2630_d801);
-		d801actions.add(backup_efs_msm8974);
-		d801actions.add(restore_efs_msm8974);
+
 		d801.setActions(d801actions);
 		
 		//LG-D802
@@ -1210,11 +1381,7 @@ public class MakeDevices {
 		d802.setProp_id("ro.product.Model");
 		d802.setSW_Prop_id("ro.lge.swversion");
 		d802.setBootloaderExploit(1);
-		d802actions.add(disable_lge_security_msm8974);
-		d802actions.add(loki_check);
-		d802actions.add(loki_boot);
-		d802actions.add(loki_recovery);
-		d802actions.add(restore_backups_msm8974);
+		d802actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_d802 = new Action();
 		cwm_6045_d802.setName("CWM-6.0.4.5");
@@ -1226,7 +1393,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_d802 = new ArrayList<Action>();
 		rdepse_cwm_6045_d802.add(loki_recovery);
 		cwm_6045_d802.setDependencies(rdepse_cwm_6045_d802);
-		d802actions.add(cwm_6045_d802);
+		//d802actions.add(cwm_6045_d802);
+		
+		Action cwm_6046_d802 = new Action();
+		cwm_6046_d802.setName("CWM-6.0.4.6");
+		cwm_6046_d802.setDescription("This will install "+cwm_6046_d802.getName());
+		cwm_6046_d802.setMd5sum("b0d79d6f4d0ad6078a852bdef16b60d3");
+		cwm_6046_d802.setVersion("1");
+		cwm_6046_d802.setZipFile("cwm-6.0.4.6-d802.zip");
+		cwm_6046_d802.setZipFileLocation("LG-D802/cwm-6.0.4.6-d802.zip");
+		ArrayList<Action> rdepse_cwm_6046_d802 = new ArrayList<Action>();
+		rdepse_cwm_6046_d802.add(loki_recovery);
+		cwm_6046_d802.setDependencies(rdepse_cwm_6046_d802);
+		d802actions.add(cwm_6046_d802);
+		
+		Action cwm_6047_d802 = new Action();
+		cwm_6047_d802.setName("CWM-6.0.4.7");
+		cwm_6047_d802.setDescription("This will install "+cwm_6047_d802.getName());
+		cwm_6047_d802.setMd5sum("a4949ead13913fe9c0739fcdbc435d05");
+		cwm_6047_d802.setVersion("1");
+		cwm_6047_d802.setZipFile("cwm-6.0.4.7-d802.zip");
+		cwm_6047_d802.setZipFileLocation("LG-D802/cwm-6.0.4.7-d802.zip");
+		ArrayList<Action> rdepse_cwm_6047_d802 = new ArrayList<Action>();
+		rdepse_cwm_6047_d802.add(loki_recovery);
+		cwm_6047_d802.setDependencies(rdepse_cwm_6047_d802);
+		d802actions.add(cwm_6047_d802);
 				
 		Action twrp_2630_d802 = new Action();
 		twrp_2630_d802.setName("TWRP-2.6.3.3");
@@ -1240,8 +1431,6 @@ public class MakeDevices {
 		twrp_2630_d802.setDependencies(rdepse_twrp_2630_d802);
 		d802actions.add(twrp_2630_d802);
 		
-		d802actions.add(backup_efs_msm8974);
-		d802actions.add(restore_efs_msm8974);		
 		d802.setActions(d802actions);
 		
 		//LG-D803
@@ -1262,11 +1451,7 @@ public class MakeDevices {
 		d803.setProp_id("ro.product.Model");
 		d803.setSW_Prop_id("ro.lge.swversion");
 		d803.setBootloaderExploit(1);
-		d803actions.add(disable_lge_security_msm8974);
-		d803actions.add(loki_check);
-		d803actions.add(loki_boot);
-		d803actions.add(loki_recovery);
-		d803actions.add(restore_backups_msm8974);
+		d803actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_d803 = new Action();
 		cwm_6045_d803.setName("CWM-6.0.4.5");
@@ -1279,6 +1464,30 @@ public class MakeDevices {
 		rdepse_cwm_6045_d803.add(loki_recovery);
 		cwm_6045_d803.setDependencies(rdepse_cwm_6045_d803);
 		
+		Action cwm_6046_d803 = new Action();
+		cwm_6046_d803.setName("CWM-6.0.4.6");
+		cwm_6046_d803.setDescription("This will install "+cwm_6046_d803.getName());
+		cwm_6046_d803.setMd5sum("201fd4d9b26060b6ee72af31ae2384a5");
+		cwm_6046_d803.setVersion("1");
+		cwm_6046_d803.setZipFile("cwm-6.0.4.6-d803.zip");
+		cwm_6046_d803.setZipFileLocation("LG-D803/cwm-6.0.4.6-d803.zip");
+		ArrayList<Action> rdepse_cwm_6046_d803 = new ArrayList<Action>();
+		rdepse_cwm_6046_d803.add(loki_recovery);
+		cwm_6046_d803.setDependencies(rdepse_cwm_6046_d803);
+		d803actions.add(cwm_6046_d803);
+		
+		Action cwm_6047_d803 = new Action();
+		cwm_6047_d803.setName("CWM-6.0.4.7");
+		cwm_6047_d803.setDescription("This will install "+cwm_6047_d803.getName());
+		cwm_6047_d803.setMd5sum("812084f5f08765d0a583b36b441acb25");
+		cwm_6047_d803.setVersion("1");
+		cwm_6047_d803.setZipFile("cwm-6.0.4.7-d803.zip");
+		cwm_6047_d803.setZipFileLocation("LG-D803/cwm-6.0.4.7-d803.zip");
+		ArrayList<Action> rdepse_cwm_6047_d803 = new ArrayList<Action>();
+		rdepse_cwm_6047_d803.add(loki_recovery);
+		cwm_6047_d803.setDependencies(rdepse_cwm_6047_d803);
+		d803actions.add(cwm_6047_d803);
+		
 		Action twrp_2630_d803 = new Action();
 		twrp_2630_d803.setName("TWRP-2.6.3.3");
 		twrp_2630_d803.setDescription("This will install "+twrp_2630_d803.getName());
@@ -1290,10 +1499,9 @@ public class MakeDevices {
 		rdepse_twrp_2630_d803.add(loki_recovery);
 		twrp_2630_d803.setDependencies(rdepse_twrp_2630_d803);
 		
-		d803actions.add(cwm_6045_d803);
+		//d803actions.add(cwm_6045_d803);
 		d803actions.add(twrp_2630_d803);
-		d803actions.add(backup_efs_msm8974);
-		d803actions.add(restore_efs_msm8974);
+
 		d803.setActions(d803actions);
 		
 		//LG-D805 Same as LG-D802
@@ -1321,7 +1529,8 @@ public class MakeDevices {
 		carrier.add("Sprint");
 		ls980.setCarrier(carrier);
 		firmware = new ArrayList<String>();
-		firmware.add("any");
+		firmware.add("LS980ZV7");
+		firmware.add("LS980ZV8");
 		ls980.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-LS980");
@@ -1329,11 +1538,7 @@ public class MakeDevices {
 		ls980.setProp_id("ro.product.Model");
 		ls980.setSW_Prop_id("ro.lge.swversion");
 		ls980.setBootloaderExploit(1);
-		ls980actions.add(disable_lge_security_msm8974);
-		ls980actions.add(loki_check);
-		ls980actions.add(loki_boot);
-		ls980actions.add(loki_recovery);
-		ls980actions.add(restore_backups_msm8974);
+		ls980actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_ls980 = new Action();
 		cwm_6045_ls980.setName("CWM-6.0.4.5");
@@ -1345,7 +1550,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_ls980 = new ArrayList<Action>();
 		rdepse_cwm_6045_ls980.add(loki_recovery);
 		cwm_6045_ls980.setDependencies(rdepse_cwm_6045_ls980);
-		ls980actions.add(cwm_6045_ls980);
+		//ls980actions.add(cwm_6045_ls980);
+		
+		Action cwm_6046_ls980 = new Action();
+		cwm_6046_ls980.setName("CWM-6.0.4.6");
+		cwm_6046_ls980.setDescription("This will install "+cwm_6046_ls980.getName());
+		cwm_6046_ls980.setMd5sum("a13e4816b5c755dbe7cb7c4cf7d65481");
+		cwm_6046_ls980.setVersion("1");
+		cwm_6046_ls980.setZipFile("cwm-6.0.4.6-ls980.zip");
+		cwm_6046_ls980.setZipFileLocation("LG-LS980/cwm-6.0.4.6-ls980.zip");
+		ArrayList<Action> rdepse_cwm_6046_ls980 = new ArrayList<Action>();
+		rdepse_cwm_6046_ls980.add(loki_recovery);
+		cwm_6046_ls980.setDependencies(rdepse_cwm_6046_ls980);
+		ls980actions.add(cwm_6046_ls980);
+		
+		Action cwm_6047_ls980 = new Action();
+		cwm_6047_ls980.setName("CWM-6.0.4.7");
+		cwm_6047_ls980.setDescription("This will install "+cwm_6047_ls980.getName());
+		cwm_6047_ls980.setMd5sum("f71d884e5148c5698a1cd97e8b05eef6");
+		cwm_6047_ls980.setVersion("1");
+		cwm_6047_ls980.setZipFile("cwm-6.0.4.7-ls980.zip");
+		cwm_6047_ls980.setZipFileLocation("LG-LS980/cwm-6.0.4.7-ls980.zip");
+		ArrayList<Action> rdepse_cwm_6047_ls980 = new ArrayList<Action>();
+		rdepse_cwm_6047_ls980.add(loki_recovery);
+		cwm_6047_ls980.setDependencies(rdepse_cwm_6047_ls980);
+		ls980actions.add(cwm_6047_ls980);
 		
 		Action twrp_2630_ls980 = new Action();
 		twrp_2630_ls980.setName("TWRP-2.6.3.3");
@@ -1358,10 +1587,47 @@ public class MakeDevices {
 		rdepse_twrp_2630_ls980.add(loki_recovery);
 		twrp_2630_ls980.setDependencies(rdepse_twrp_2630_ls980);
 		ls980actions.add(twrp_2630_ls980);
-		
-		ls980actions.add(backup_efs_msm8974);
-		ls980actions.add(restore_efs_msm8974);
+
 		ls980.setActions(ls980actions);
+		
+		//LG-LS980_ZVA
+		ArrayList<Action> ls980_zva_actions = new ArrayList<Action>();
+		Device ls980_zva = new Device();
+		ls980_zva.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("Sprint");
+		ls980_zva.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("LS980ZVA");
+		firmware.add("OpTimuS DE V2.1");
+		ls980_zva.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-LS980");
+		ls980_zva.setModel(model);
+		ls980_zva.setProp_id("ro.product.Model");
+		ls980_zva.setSW_Prop_id("ro.lge.swversion");
+		ls980_zva.setBootloaderExploit(1);
+		ls980_zva_actions.addAll(g2CommonActions);
+		
+		Action cwm_6046_ls980_zva = cwm_6046_ls980;
+		ArrayList<Action> rdepse_cwm_6046_ls980_zva = rdepse_cwm_6046_ls980;
+		rdepse_cwm_6046_ls980_zva.add(revert_aboot_zva);
+		cwm_6046_ls980_zva.setDependencies(rdepse_cwm_6046_ls980_zva);
+		ls980_zva_actions.add(cwm_6046_ls980_zva);
+		
+		Action cwm_6047_ls980_zva = cwm_6047_ls980;
+		ArrayList<Action> rdepse_cwm_6047_ls980_zva = rdepse_cwm_6047_ls980;
+		rdepse_cwm_6047_ls980_zva.add(revert_aboot_zva);
+		cwm_6047_ls980_zva.setDependencies(rdepse_cwm_6047_ls980_zva);
+		ls980_zva_actions.add(cwm_6047_ls980_zva);
+		
+		Action twrp_2630_ls980_zva = twrp_2630_ls980;
+		ArrayList<Action> rdepse_twrp_2630_ls980_zva = rdepse_twrp_2630_ls980;
+		rdepse_twrp_2630_ls980_zva.add(revert_aboot_zva);
+		twrp_2630_ls980.setDependencies(rdepse_twrp_2630_ls980_zva);
+		ls980_zva_actions.add(twrp_2630_ls980_zva);
+
+		ls980_zva.setActions(ls980_zva_actions);
 		
 		//LG-VS980
 		ArrayList<Action> vs980actions = new ArrayList<Action>();
@@ -1382,12 +1648,7 @@ public class MakeDevices {
 		vs980.setProp_id("ro.product.Model");
 		vs980.setSW_Prop_id("ro.lge.swversion");
 		vs980.setBootloaderExploit(1);
-		vs980actions.add(disable_lge_security_msm8974);
-		vs980actions.add(loki_check);
-		vs980actions.add(loki_boot);
-		vs980actions.add(loki_recovery);
-		vs980actions.add(restore_backups_msm8974);
-		
+		vs980actions.addAll(g2CommonActions);
 		
 		Action cwm_6045_vs980 = new Action();
 		cwm_6045_vs980.setName("CWM-6.0.4.5");
@@ -1399,7 +1660,31 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6045_vs980 = new ArrayList<Action>();
 		rdepse_cwm_6045_vs980.add(loki_recovery);
 		cwm_6045_vs980.setDependencies(rdepse_cwm_6045_vs980);
-		vs980actions.add(cwm_6045_vs980);
+		//vs980actions.add(cwm_6045_vs980);
+		
+		Action cwm_6046_vs980 = new Action();
+		cwm_6046_vs980.setName("CWM-6.0.4.6");
+		cwm_6046_vs980.setDescription("This will install "+cwm_6046_vs980.getName());
+		cwm_6046_vs980.setMd5sum("6ab7aba051e4ee36c9167cc400e4d340");
+		cwm_6046_vs980.setVersion("1");
+		cwm_6046_vs980.setZipFile("cwm-6.0.4.6-vs980.zip");
+		cwm_6046_vs980.setZipFileLocation("LG-VS980/cwm-6.0.4.6-vs980.zip");
+		ArrayList<Action> rdepse_cwm_6046_vs980 = new ArrayList<Action>();
+		rdepse_cwm_6046_vs980.add(loki_recovery);
+		cwm_6046_vs980.setDependencies(rdepse_cwm_6046_vs980);
+		vs980actions.add(cwm_6046_vs980);
+		
+		Action cwm_6047_vs980 = new Action();
+		cwm_6047_vs980.setName("CWM-6.0.4.7");
+		cwm_6047_vs980.setDescription("This will install "+cwm_6047_vs980.getName());
+		cwm_6047_vs980.setMd5sum("a2f745e02e0ef86e89d9b88af6ae2093");
+		cwm_6047_vs980.setVersion("1");
+		cwm_6047_vs980.setZipFile("cwm-6.0.4.7-vs980.zip");
+		cwm_6047_vs980.setZipFileLocation("LG-VS980/cwm-6.0.4.7-vs980.zip");
+		ArrayList<Action> rdepse_cwm_6047_vs980 = new ArrayList<Action>();
+		rdepse_cwm_6047_vs980.add(loki_recovery);
+		cwm_6047_vs980.setDependencies(rdepse_cwm_6047_vs980);
+		vs980actions.add(cwm_6047_vs980);
 		
 		Action twrp_2630_vs980 = new Action();
 		twrp_2630_vs980.setName("TWRP-2.6.3.3");
@@ -1412,9 +1697,7 @@ public class MakeDevices {
 		rdepse_twrp_2630_vs980.add(loki_recovery);
 		twrp_2630_vs980.setDependencies(rdepse_twrp_2630_vs980);
 		vs980actions.add(twrp_2630_vs980);
-		
-		vs980actions.add(backup_efs_msm8974);
-		vs980actions.add(restore_efs_msm8974);
+
 		vs980.setActions(vs980actions);
 
 		//VS980 4G
@@ -1476,7 +1759,7 @@ public class MakeDevices {
 		devices.add(e973);
 		devices.add(e975);
 		devices.add(e975k);
-		devices.add(e975w);
+		//devices.add(e975w);
 		devices.add(e976);
 		devices.add(e977);
 		devices.add(ls970);
@@ -1499,6 +1782,7 @@ public class MakeDevices {
 		devices.add(d803);
 		devices.add(d805);
 		devices.add(ls980);
+		devices.add(ls980_zva);
 		devices.add(vs980);
 		devices.add(vs980_12b);
 		ddevices.setDevices(devices);
