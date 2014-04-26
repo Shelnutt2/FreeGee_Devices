@@ -42,7 +42,20 @@ public class Action implements Comparable<Action> {
     
     public Action(){}
     
-    public String getName(){
+    public Action(Action action) {
+    	this.name = action.getName();
+    	this.description = action.getDescription();
+    	this.version = action.getVersion();
+    	this.zipfile = action.getZipFile();
+    	this.zipfilelocation = action.getZipFileLocation();
+    	this.md5sum = action.getMd5sum();
+    	this.stockOnly = action.getStockOnly();
+    	this.hidden = action.getHidden();
+    	this.priority = action.getPriority();
+    	this.dependencies = action.getDependencies();
+	}
+
+	public String getName(){
     	return name;
     }
     

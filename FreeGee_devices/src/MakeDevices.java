@@ -62,14 +62,80 @@ public class MakeDevices {
 		
 		Action revert_aboot_zva = new Action();
 		revert_aboot_zva.setName("Revert ZVA Aboot");
-		revert_aboot_zva.setDescription("This will revert the Sprint ZVA update to ZV8 aboot");
-		revert_aboot_zva.setMd5sum("a918f9f42f216d1079d4e1e9a915e086");
+		revert_aboot_zva.setDescription("This will revert the Sprint ZVA/ZVC update to ZV8 aboot");
+		revert_aboot_zva.setMd5sum("0539fd34b610b5f211745971729ae362");
 		revert_aboot_zva.setVersion("1");
 		revert_aboot_zva.setStockOnly(true);
 		revert_aboot_zva.setHidden(true);
 		revert_aboot_zva.setZipFile("revert_aboot_zva.zip");
 		revert_aboot_zva.setZipFileLocation("revert_aboot_zva.zip");
 		revert_aboot_zva.setPriority(11);
+		
+		Action revert_aboot_d800 = new Action();
+		revert_aboot_d800.setName("Revert D800 Aboot");
+		revert_aboot_d800.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_d800.setMd5sum("c44b39db872208029dc1701d5d79ec46");
+		revert_aboot_d800.setVersion("1");
+		revert_aboot_d800.setStockOnly(true);
+		revert_aboot_d800.setHidden(true);
+		revert_aboot_d800.setZipFile("revert_aboot_d800.zip");
+		revert_aboot_d800.setZipFileLocation("revert_aboot_d800.zip");
+		revert_aboot_d800.setPriority(11);
+		
+		Action revert_aboot_d801 = new Action();
+		revert_aboot_d801.setName("Revert D801 Aboot");
+		revert_aboot_d801.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_d801.setMd5sum("17f129fa8db4c874012c0f32b06c5399");
+		revert_aboot_d801.setVersion("1");
+		revert_aboot_d801.setStockOnly(true);
+		revert_aboot_d801.setHidden(true);
+		revert_aboot_d801.setZipFile("revert_aboot_d801.zip");
+		revert_aboot_d801.setZipFileLocation("revert_aboot_d801.zip");
+		revert_aboot_d801.setPriority(11);
+		
+		Action revert_aboot_d802 = new Action();
+		revert_aboot_d802.setName("Revert D802 Aboot");
+		revert_aboot_d802.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_d802.setMd5sum("7814832b932bfed200de1d06bf496228");
+		revert_aboot_d802.setVersion("1");
+		revert_aboot_d802.setStockOnly(true);
+		revert_aboot_d802.setHidden(true);
+		revert_aboot_d802.setZipFile("revert_aboot_d802.zip");
+		revert_aboot_d802.setZipFileLocation("revert_aboot_d802.zip");
+		revert_aboot_d802.setPriority(11);
+		
+		Action revert_aboot_d803 = new Action();
+		revert_aboot_d803.setName("Revert D803 Aboot");
+		revert_aboot_d803.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_d803.setMd5sum("f6a72fd731e8af967562e0a9a7cca961");
+		revert_aboot_d803.setVersion("1");
+		revert_aboot_d803.setStockOnly(true);
+		revert_aboot_d803.setHidden(true);
+		revert_aboot_d803.setZipFile("revert_aboot_d803.zip");
+		revert_aboot_d803.setZipFileLocation("revert_aboot_d803.zip");
+		revert_aboot_d803.setPriority(11);
+		
+		Action revert_aboot_d805 = new Action();
+		revert_aboot_d805.setName("Revert D805 Aboot");
+		revert_aboot_d805.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_d805.setMd5sum("02a6e3310d84624674f08b088ba3f9c0");
+		revert_aboot_d805.setVersion("1");
+		revert_aboot_d805.setStockOnly(true);
+		revert_aboot_d805.setHidden(true);
+		revert_aboot_d805.setZipFile("revert_aboot_d805.zip");
+		revert_aboot_d805.setZipFileLocation("revert_aboot_d805.zip");
+		revert_aboot_d805.setPriority(11);
+		
+		Action revert_aboot_vs980 = new Action();
+		revert_aboot_vs980.setName("Revert VS980 Aboot");
+		revert_aboot_vs980.setDescription("This will revert the KitKat aboot to a Jellybean loki-able one.");
+		revert_aboot_vs980.setMd5sum("1d66ba2b0a14945e0493f83dbbd72b0b");
+		revert_aboot_vs980.setVersion("1");
+		revert_aboot_vs980.setStockOnly(true);
+		revert_aboot_vs980.setHidden(true);
+		revert_aboot_vs980.setZipFile("revert_aboot_vs980.zip");
+		revert_aboot_vs980.setZipFileLocation("revert_aboot_vs980.zip");
+		revert_aboot_vs980.setPriority(11);
 		
 		Action disable_lge_security_og = new Action();
 		disable_lge_security_og.setName("Disable LGE Security");
@@ -163,7 +229,7 @@ public class MakeDevices {
 		Action restore_efs_msm8974 = new Action();
 		restore_efs_msm8974.setName("Restore EFS");
 		restore_efs_msm8974.setDescription("This will restore your efs partitions, which contain your network values");
-		restore_efs_msm8974.setMd5sum("a1a58e5bb7fb57ff01302c2604289f2b");
+		restore_efs_msm8974.setMd5sum("d4ca702f5df31a96d6b6557164ddf96e");
 		restore_efs_msm8974.setVersion("1");
 		restore_efs_msm8974.setZipFile("restore_efs_msm8974.zip");
 		restore_efs_msm8974.setZipFileLocation("restore_efs_msm8974.zip");
@@ -273,7 +339,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_ls970 = new ArrayList<Action>();
 		rdepse_cwm_6046_ls970.add(ogMakounlock);
 		cwm_6046_ls970.setDependencies(rdepse_cwm_6046_ls970);
-		ls970actions.add(cwm_6046_ls970);
+		//ls970actions.add(cwm_6046_ls970);
 		
 		Action cwm_6047_ls970 = new Action();
 		cwm_6047_ls970.setName("CWM-6.0.4.7");
@@ -361,7 +427,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_e970 = new ArrayList<Action>();
 		rdepse_cwm_6046_e970.add(ogMakounlock);
 		cwm_6046_e970.setDependencies(rdepse_cwm_6046_e970);
-		e970actions.add(cwm_6046_e970);
+		//e970actions.add(cwm_6046_e970);
 		
 		Action cwm_6047_e970 = new Action();
 		cwm_6047_e970.setName("CWM-6.0.4.7");
@@ -448,7 +514,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_e973 = new ArrayList<Action>();
 		rdepse_cwm_6046_e973.add(ogMakounlock);
 		cwm_6046_e973.setDependencies(rdepse_cwm_6046_e973);
-		e971actions.add(cwm_6046_e973);
+		//e971actions.add(cwm_6046_e973);
 		
 		Action cwm_6047_e973 = new Action();
 		cwm_6047_e973.setName("CWM-6.0.4.7");
@@ -571,7 +637,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_e975 = new ArrayList<Action>();
 		rdepse_cwm_6046_e975.add(ogMakounlock);
 		cwm_6046_e975.setDependencies(rdepse_cwm_6046_e975);
-		e975actions.add(cwm_6046_e975);
+		//e975actions.add(cwm_6046_e975);
 		
 		Action cwm_6047_e975 = new Action();
 		cwm_6047_e975.setName("CWM-6.0.4.7");
@@ -916,7 +982,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_180s = new ArrayList<Action>();
 		rdepse_cwm_6046_180s.add(ogMakounlock);
 		cwm_6046_180s.setDependencies(rdepse_cwm_6046_180s);
-		s180actions.add(cwm_6046_180s);
+		//s180actions.add(cwm_6046_180s);
 		
 		Action cwm_6047_180s = new Action();
 		cwm_6047_180s.setName("CWM-6.0.4.7");
@@ -1001,7 +1067,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_e980 = new ArrayList<Action>();
 		rdepse_cwm_6046_e980.add(loki_recovery);
 		cwm_6046_e980.setDependencies(rdepse_cwm_6046_e980);
-		e980actions.add(cwm_6046_e980);
+		//e980actions.add(cwm_6046_e980);
 		
 		Action cwm_6047_e980 = new Action();
 		cwm_6047_e980.setName("CWM-6.0.4.7");
@@ -1192,7 +1258,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_f220 = new ArrayList<Action>();
 		rdepse_cwm_6046_f220.add(loki_recovery);
 		cwm_6046_f220.setDependencies(rdepse_cwm_6046_f220);
-		f220kactions.add(cwm_6046_f220);
+		//f220kactions.add(cwm_6046_f220);
 		
 		Action cwm_6047_f220 = new Action();
 		cwm_6047_f220.setName("CWM-6.0.4.7");
@@ -1232,7 +1298,7 @@ public class MakeDevices {
 		firmware = new ArrayList<String>();
 		firmware.add("d80010d");
 		firmware.add("d80010o");
-		firmware.add("any");
+		firmware.add("d80010");
 		d800.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-D800");
@@ -1287,11 +1353,44 @@ public class MakeDevices {
 		twrp_2630_d800.setDependencies(rdepse_twrp_2630_d800);
 		
 		//d800actions.add(cwm_6045_d800);
-		d800actions.add(cwm_6046_d800);
+		//d800actions.add(cwm_6046_d800);
 		d800actions.add(cwm_6047_d800);
 		d800actions.add(twrp_2630_d800);
 
 		d800.setActions(d800actions);
+		
+		//LG-D800_KK
+		ArrayList<Action> d800_kk_actions = new ArrayList<Action>();
+		Device d800_kk = new Device();
+		d800_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("Att");
+		d800_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("D80020c");
+		firmware.add("D80020");
+		d800_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-D800");
+		d800_kk.setModel(model);
+		d800_kk.setProp_id("ro.product.Model");
+		d800_kk.setSW_Prop_id("ro.lge.swversion");
+		d800_kk.setBootloaderExploit(1);
+		d800_kk_actions.addAll(g2CommonActions);
+		
+		Action cwm_6047_d800_kk = new Action(cwm_6047_d800);
+		ArrayList<Action> rdepse_cwm_6047_d800_kk = new ArrayList<Action>(rdepse_cwm_6047_d800);
+		rdepse_cwm_6047_d800_kk.add(revert_aboot_d800);
+		cwm_6047_d800_kk.setDependencies(rdepse_cwm_6047_d800_kk);
+		d800_kk_actions.add(cwm_6047_d800_kk);
+		
+		Action twrp_2630_d800_kk = new Action(twrp_2630_d800);
+		ArrayList<Action> rdepse_twrp_2630_d800_kk = new ArrayList<Action>(rdepse_twrp_2630_d800);
+		rdepse_twrp_2630_d800_kk.add(revert_aboot_d800);
+		twrp_2630_d800_kk.setDependencies(rdepse_twrp_2630_d800_kk);
+		d800_kk_actions.add(twrp_2630_d800_kk);
+
+		d800_kk.setActions(d800_kk_actions);
 		
 		//LG-D801
 		ArrayList<Action> d801actions = new ArrayList<Action>();
@@ -1304,7 +1403,7 @@ public class MakeDevices {
 		firmware = new ArrayList<String>();
 		firmware.add("d80110d");
 		firmware.add("d80110o");
-		firmware.add("any");
+		firmware.add("d80110");
 		d801.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-D801");
@@ -1359,11 +1458,47 @@ public class MakeDevices {
 		twrp_2630_d801.setDependencies(rdepse_twrp_2630_d801);
 		
 		//d801actions.add(cwm_6045_d801);
-		d801actions.add(cwm_6046_d801);
+		//d801actions.add(cwm_6046_d801);
 		d801actions.add(cwm_6047_d801);
 		d801actions.add(twrp_2630_d801);
 
 		d801.setActions(d801actions);
+		
+		
+		//LG-D801_KK
+		ArrayList<Action> d801_kk_actions = new ArrayList<Action>();
+		Device d801_kk = new Device();
+		d801_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("Bell");
+		carrier.add("Tmobile");
+		d801_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("D80120a");
+		firmware.add("D80120");
+		d801_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-D801");
+		d801_kk.setModel(model);
+		d801_kk.setProp_id("ro.product.Model");
+		d801_kk.setSW_Prop_id("ro.lge.swversion");
+		d801_kk.setBootloaderExploit(1);
+		d801_kk_actions.addAll(g2CommonActions);
+		
+		Action cwm_6047_d801_kk = new Action(cwm_6047_d801);
+		ArrayList<Action> rdepse_cwm_6047_d801_kk = new ArrayList<Action>(rdepse_cwm_6047_d801);
+		rdepse_cwm_6047_d801_kk.add(revert_aboot_d801);
+		cwm_6047_d801_kk.setDependencies(rdepse_cwm_6047_d801_kk);
+		d801_kk_actions.add(cwm_6047_d801_kk);
+		
+		Action twrp_2630_d801_kk = new Action(twrp_2630_d801);
+		ArrayList<Action> rdepse_twrp_2630_d801_kk = new ArrayList<Action>(rdepse_twrp_2630_d801);
+		rdepse_twrp_2630_d801_kk.add(revert_aboot_d801);
+		twrp_2630_d801_kk.setDependencies(rdepse_twrp_2630_d801_kk);
+		d801_kk_actions.add(twrp_2630_d801_kk);
+
+		d801_kk.setActions(d801_kk_actions);
+		
 		
 		//LG-D802
 		ArrayList<Action> d802actions = new ArrayList<Action>();
@@ -1373,7 +1508,7 @@ public class MakeDevices {
 		carrier.add("any");
 		d802.setCarrier(carrier);
 		firmware = new ArrayList<String>();
-		firmware.add("any");
+		firmware.add("D80210");
 		d802.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-D802");
@@ -1405,7 +1540,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_d802 = new ArrayList<Action>();
 		rdepse_cwm_6046_d802.add(loki_recovery);
 		cwm_6046_d802.setDependencies(rdepse_cwm_6046_d802);
-		d802actions.add(cwm_6046_d802);
+	//	d802actions.add(cwm_6046_d802);
 		
 		Action cwm_6047_d802 = new Action();
 		cwm_6047_d802.setName("CWM-6.0.4.7");
@@ -1433,6 +1568,41 @@ public class MakeDevices {
 		
 		d802.setActions(d802actions);
 		
+		//LG-D802_KK
+		ArrayList<Action> d802_kk_actions = new ArrayList<Action>();
+		Device d802_kk = new Device();
+		d802_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("any");
+		d802_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("D80220a");
+		firmware.add("D80220b");
+		firmware.add("D80220c");
+		firmware.add("D80220");
+		d802_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-D802");
+		d802_kk.setModel(model);
+		d802_kk.setProp_id("ro.product.Model");
+		d802_kk.setSW_Prop_id("ro.lge.swversion");
+		d802_kk.setBootloaderExploit(1);
+		d802_kk_actions.addAll(g2CommonActions);
+
+		Action cwm_6047_d802_kk = new Action(cwm_6047_d802);
+		ArrayList<Action> rdepse_cwm_6047_d802_kk = new ArrayList<Action>(rdepse_cwm_6047_d802);
+		rdepse_cwm_6047_d802_kk.add(revert_aboot_d802);
+		cwm_6047_d802_kk.setDependencies(rdepse_cwm_6047_d802_kk);
+		d802_kk_actions.add(cwm_6047_d802_kk);
+				
+		Action twrp_2630_d802_kk = new Action(twrp_2630_d802);
+		ArrayList<Action> rdepse_twrp_2630_d802_kk = new ArrayList<Action>(rdepse_twrp_2630_d802);
+		rdepse_twrp_2630_d802_kk.add(revert_aboot_d802);
+		twrp_2630_d802_kk.setDependencies(rdepse_twrp_2630_d802_kk);
+		d802_kk_actions.add(twrp_2630_d802_kk);
+
+		d802_kk.setActions(d802_kk_actions);
+		
 		//LG-D803
 		ArrayList<Action> d803actions = new ArrayList<Action>();
 		Device d803 = new Device();
@@ -1443,7 +1613,8 @@ public class MakeDevices {
 		firmware = new ArrayList<String>();
 		firmware.add("d80310d");
 		firmware.add("d80310o");
-		firmware.add("any");
+		firmware.add("D80310");
+		firmware.add("d80310");
 		d803.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-D803");
@@ -1474,7 +1645,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_d803 = new ArrayList<Action>();
 		rdepse_cwm_6046_d803.add(loki_recovery);
 		cwm_6046_d803.setDependencies(rdepse_cwm_6046_d803);
-		d803actions.add(cwm_6046_d803);
+		//d803actions.add(cwm_6046_d803);
 		
 		Action cwm_6047_d803 = new Action();
 		cwm_6047_d803.setName("CWM-6.0.4.7");
@@ -1504,6 +1675,43 @@ public class MakeDevices {
 
 		d803.setActions(d803actions);
 		
+		//LG-D803_KK
+		ArrayList<Action> d803_kk_actions = new ArrayList<Action>();
+		Device d803_kk = new Device();
+		d803_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("Bell");
+		carrier.add("Tmobile");
+		d803_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("D80320a");
+		firmware.add("D80320");
+		firmware.add("D803B20e");
+		firmware.add("D803R20d");
+		firmware.add("D803T20c");
+		d803_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-D803");
+		d803_kk.setModel(model);
+		d803_kk.setProp_id("ro.product.Model");
+		d803_kk.setSW_Prop_id("ro.lge.swversion");
+		d803_kk.setBootloaderExploit(1);
+		d803_kk_actions.addAll(g2CommonActions);
+
+		Action cwm_6047_d803_kk = new Action(cwm_6047_d803);
+		ArrayList<Action> rdepse_cwm_6047_d803_kk = new ArrayList<Action>(rdepse_cwm_6047_d803);
+		rdepse_cwm_6047_d803_kk.add(revert_aboot_d803);
+		cwm_6047_d803_kk.setDependencies(rdepse_cwm_6047_d803_kk);
+		d803_kk_actions.add(cwm_6047_d803_kk);
+
+		Action twrp_2630_d803_kk = new Action(twrp_2630_d803);
+		ArrayList<Action> rdepse_twrp_2630_d803_kk = new ArrayList<Action>(rdepse_twrp_2630_d803);
+		rdepse_twrp_2630_d803_kk.add(revert_aboot_d803);
+		twrp_2630_d803_kk.setDependencies(rdepse_twrp_2630_d803_kk);
+		d803_kk_actions.add(twrp_2630_d803_kk);
+
+		d803_kk.setActions(d803_kk_actions);
+		
 		//LG-D805 Same as LG-D802
 		Device d805 = new Device();
 		d805.setName("LG G2");
@@ -1511,7 +1719,8 @@ public class MakeDevices {
 		carrier.add("any");
 		d805.setCarrier(carrier);
 		firmware = new ArrayList<String>();
-		firmware.add("any");
+		firmware.add("D80510");
+		firmware.add("d80510");
 		d805.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-D805");
@@ -1520,6 +1729,23 @@ public class MakeDevices {
 		d805.setSW_Prop_id("ro.lge.swversion");
 		d805.setBootloaderExploit(1);
 		d805.setActions(d802actions);
+		
+		//LG-D805_kk Same as LG-D802
+		Device d805_kk = new Device();
+		d805_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("any");
+		d805_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("any");
+		d805_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-D805");
+		d805_kk.setModel(model);
+		d805_kk.setProp_id("ro.product.Model");
+		d805_kk.setSW_Prop_id("ro.lge.swversion");
+		d805_kk.setBootloaderExploit(1);
+		d805_kk.setActions(d802_kk_actions);
 
 		//LG-LS980
 		ArrayList<Action> ls980actions = new ArrayList<Action>();
@@ -1562,7 +1788,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_ls980 = new ArrayList<Action>();
 		rdepse_cwm_6046_ls980.add(loki_recovery);
 		cwm_6046_ls980.setDependencies(rdepse_cwm_6046_ls980);
-		ls980actions.add(cwm_6046_ls980);
+		//ls980actions.add(cwm_6046_ls980);
 		
 		Action cwm_6047_ls980 = new Action();
 		cwm_6047_ls980.setName("CWM-6.0.4.7");
@@ -1599,7 +1825,9 @@ public class MakeDevices {
 		ls980_zva.setCarrier(carrier);
 		firmware = new ArrayList<String>();
 		firmware.add("LS980ZVA");
+		firmware.add("LS980ZVC");
 		firmware.add("OpTimuS DE V2.1");
+		firmware.add("OpTimuS DE V2.2");
 		ls980_zva.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-LS980");
@@ -1609,22 +1837,16 @@ public class MakeDevices {
 		ls980_zva.setBootloaderExploit(1);
 		ls980_zva_actions.addAll(g2CommonActions);
 		
-		Action cwm_6046_ls980_zva = cwm_6046_ls980;
-		ArrayList<Action> rdepse_cwm_6046_ls980_zva = rdepse_cwm_6046_ls980;
-		rdepse_cwm_6046_ls980_zva.add(revert_aboot_zva);
-		cwm_6046_ls980_zva.setDependencies(rdepse_cwm_6046_ls980_zva);
-		ls980_zva_actions.add(cwm_6046_ls980_zva);
-		
-		Action cwm_6047_ls980_zva = cwm_6047_ls980;
-		ArrayList<Action> rdepse_cwm_6047_ls980_zva = rdepse_cwm_6047_ls980;
+		Action cwm_6047_ls980_zva = new Action(cwm_6047_ls980);
+		ArrayList<Action> rdepse_cwm_6047_ls980_zva = new ArrayList<Action>(rdepse_cwm_6047_ls980);
 		rdepse_cwm_6047_ls980_zva.add(revert_aboot_zva);
 		cwm_6047_ls980_zva.setDependencies(rdepse_cwm_6047_ls980_zva);
 		ls980_zva_actions.add(cwm_6047_ls980_zva);
 		
-		Action twrp_2630_ls980_zva = twrp_2630_ls980;
-		ArrayList<Action> rdepse_twrp_2630_ls980_zva = rdepse_twrp_2630_ls980;
+		Action twrp_2630_ls980_zva = new Action(twrp_2630_ls980);
+		ArrayList<Action> rdepse_twrp_2630_ls980_zva = new ArrayList<Action>(rdepse_twrp_2630_ls980);
 		rdepse_twrp_2630_ls980_zva.add(revert_aboot_zva);
-		twrp_2630_ls980.setDependencies(rdepse_twrp_2630_ls980_zva);
+		twrp_2630_ls980_zva.setDependencies(rdepse_twrp_2630_ls980_zva);
 		ls980_zva_actions.add(twrp_2630_ls980_zva);
 
 		ls980_zva.setActions(ls980_zva_actions);
@@ -1639,8 +1861,7 @@ public class MakeDevices {
 		firmware = new ArrayList<String>();
 		firmware.add("VS98010B");
 		firmware.add("VS98011A");
-		firmware.add("VS98012B");
-		firmware.add("any");
+		//firmware.add("any");
 		vs980.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("LG-VS980");
@@ -1672,7 +1893,7 @@ public class MakeDevices {
 		ArrayList<Action> rdepse_cwm_6046_vs980 = new ArrayList<Action>();
 		rdepse_cwm_6046_vs980.add(loki_recovery);
 		cwm_6046_vs980.setDependencies(rdepse_cwm_6046_vs980);
-		vs980actions.add(cwm_6046_vs980);
+		//vs980actions.add(cwm_6046_vs980);
 		
 		Action cwm_6047_vs980 = new Action();
 		cwm_6047_vs980.setName("CWM-6.0.4.7");
@@ -1707,10 +1928,8 @@ public class MakeDevices {
 		carrier.add("Verizion");
 		vs980_12b.setCarrier(carrier);
 		firmware = new ArrayList<String>();
-		firmware.add("VS98010B");
-		firmware.add("VS98011A");
 		firmware.add("VS98012B");
-		firmware.add("any");
+//		firmware.add("any");
 		vs980_12b.setFirmware(firmware);
 		model = new ArrayList<String>();
 		model.add("VS980 4G");
@@ -1719,6 +1938,39 @@ public class MakeDevices {
 		vs980_12b.setSW_Prop_id("ro.lge.swversion");
 		vs980_12b.setBootloaderExploit(1);
 		vs980_12b.setActions(vs980actions);
+		
+		//LG-VS980_KK
+		ArrayList<Action> vs980_kk_actions = new ArrayList<Action>();
+		Device vs980_kk = new Device();
+		vs980_kk.setName("LG G2");
+		carrier = new ArrayList<String>();
+		carrier.add("Verizon");
+		vs980_kk.setCarrier(carrier);
+		firmware = new ArrayList<String>();
+		firmware.add("VS98020c");
+		vs980_kk.setFirmware(firmware);
+		model = new ArrayList<String>();
+		model.add("LG-VS980");
+		model.add("VS980 4G");
+		vs980_kk.setModel(model);
+		vs980_kk.setProp_id("ro.product.Model");
+		vs980_kk.setSW_Prop_id("ro.lge.swversion");
+		vs980_kk.setBootloaderExploit(1);
+		vs980_kk_actions.addAll(g2CommonActions);
+
+		Action cwm_6047_vs980_kk = new Action(cwm_6047_vs980);
+		ArrayList<Action> rdepse_cwm_6047_vs980_kk = new ArrayList<Action>(rdepse_cwm_6047_vs980);
+		rdepse_cwm_6047_vs980_kk.add(revert_aboot_vs980);
+		cwm_6047_vs980_kk.setDependencies(rdepse_cwm_6047_vs980_kk);
+		vs980_kk_actions.add(cwm_6047_vs980_kk);
+
+		Action twrp_2630_vs980_kk = new Action(twrp_2630_vs980);
+		ArrayList<Action> rdepse_twrp_2630_vs980_kk = new ArrayList<Action>(rdepse_twrp_2630_vs980);
+		rdepse_twrp_2630_vs980_kk.add(revert_aboot_vs980);
+		twrp_2630_vs980_kk.setDependencies(rdepse_twrp_2630_vs980_kk);
+		vs980_kk_actions.add(twrp_2630_vs980_kk);
+
+		vs980_kk.setActions(vs980_kk_actions);
 		
 		/*System.out.println("Enter your Device name : ");
 		myDevice.setName(br.readLine());
@@ -1776,18 +2028,24 @@ public class MakeDevices {
 		devices.add(f240l);
 		devices.add(f240k);
 		devices.add(f220k);
+		devices.add(d800_kk);
 		devices.add(d800);
+		devices.add(d801_kk);
 		devices.add(d801);
+		devices.add(d802_kk);
 		devices.add(d802);
+		devices.add(d803_kk);
 		devices.add(d803);
+		devices.add(d805_kk);
 		devices.add(d805);
-		devices.add(ls980);
 		devices.add(ls980_zva);
+		devices.add(ls980);
+		devices.add(vs980_kk);
 		devices.add(vs980);
 		devices.add(vs980_12b);
 		ddevices.setDevices(devices);
 
-		File devices2 = new File("/mnt/Android/optimusg/freegee/2.0/devices/devices2.xml");
+		File devices2 = new File("/mnt/Android/optimusg/freegee/2.0/devices/devices2_beta.xml");
 		serializer.write(ddevices, devices2);
 		
 		Devices newDevices = serializer.read(Devices.class, devices2);
